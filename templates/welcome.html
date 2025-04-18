@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>{{ data.title }}</h1>
+    <p class="lead">{{ data.welcome_text }}</p>
+    <p>{{ data.secondary_text }}</p>
+    <img src="{{ data.image_url }}" alt="Piano Keyboard" class="img-fluid my-4">
+</div>
+{% endblock %}
