@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Learning the Basics: Naturals - Melody Muse{% endblock %}
+
+{% block content %}
+<div class="learn-content">
+    <h1 class="text-center mb-5">Learning the Basics: <span class="underline">Naturals</span></h1>
+    
+    <div class="content-section">
+        <h2>Basic Information:</h2>
+        <ul class="basic-info-list">
+            <li>Naturals are played on the white keys of the piano!</li>
+            <li>The notes are: C, D, E, F, G, A, B, C</li>
+            <li class="with-sub-point">
+                We say that between each natural note, it is a <span class="underline">whole step!</span> However, between E and F is a half note and between B and C is also a half note
+                <ul>
+                    <li>This can be remembered because when looking at a keyboard, if there is a black key in between, it makes it a whole step, otherwise it's a half step</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="keyboard-section mt-5">
+        <div class="keyboard-image text-center">
+            <img src="{{ url_for('static', filename='images/Naturals_Learning/naturals.jpg') }}" alt="Piano keyboard showing natural notes" class="img-fluid">
+        </div>
+    </div>
+
+    <div class="navigation-buttons mt-5 text-center">
+        <a href="{{ url_for('learn') }}" class="btn btn-secondary me-2">Back to Learn</a>
+        <a href="{{ url_for('learn_treble') }}" class="btn btn-primary">Next: Treble Clef</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#learnBtn').addClass('active');
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Learning the Basics: Bass Clef - Melody Muse{% endblock %}
+
+{% block content %}
+<div class="learn-content">
+    <h1 class="text-center mb-5">Learning the Basics: <span class="underline">Naturals</span></h1>
+    
+    <div class="content-section">
+        <h2 class="mb-4">Bass Clef: typically for your left hand</h2>
+        <div class="bass-info mb-4">
+            <p class="lead">To help remember, the notes on the lines can be remembered with the acronym <strong>"Good Boys Do Fine Always"</strong>, and the spaces in between can be remembered with <strong>"All Cows Eat Grass"</strong></p>
+        </div>
+
+        <div class="visual-section text-center">
+            <img src="{{ url_for('static', filename='images/Naturals_Learning/bass-clef-notes.jpg') }}" alt="Bass clef staff and notes" class="img-fluid mb-4">
+        </div>
+    </div>
+
+    <div class="navigation-buttons mt-5 text-center">
+        <a href="{{ url_for('learn_treble') }}" class="btn btn-secondary me-2">Back to Treble Clef</a>
+        <a href="{{ url_for('learn_naturals') }}" class="btn btn-primary">Next: Natural Notes</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#learnBtn').addClass('active');
+});
+</script>
+{% endblock %} 

@@ -19,5 +19,29 @@ def home():
     }
     return render_template('welcome.html', data=page_data)
 
+@app.route('/learn')
+def learn():
+	return render_template('learn.html')
+
+@app.route('/learn/naturals')
+def learn_naturals():
+	return render_template('naturals/learn_naturals.html')
+
+@app.route('/learn/treble')
+def learn_treble():
+	return render_template('naturals/learn_treble.html')
+
+@app.route('/learn/bass')
+def learn_bass():
+	return render_template('naturals/learn_bass.html')
+
+@app.route('/learn/accidentals')
+def learn_accidentals():
+	return render_template('accidentals/learn_accidentals.html')
+
+@app.route('/learn/challenge')
+def learn_challenge():
+	return render_template('challenge/learn_challenge.html')
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5001, debug=True)
