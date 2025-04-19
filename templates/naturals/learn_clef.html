@@ -7,26 +7,13 @@
     <h1 class="text-center mb-5">{{ data.title }}</h1>
     
     <div class="content-section">
-        <h2>{{ data.sections[0].title }}</h2>
-        <ul class="basic-info-list">
-            {% for item in data.sections[0].content %}
-            {% if item is string %}
-            <li>{{ item }}</li>
-            {% else %}
-            <li class="with-sub-point">
-                {{ item.text }}
-                <ul>
-                    <li>{{ item.subpoint }}</li>
-                </ul>
-            </li>
-            {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
+        <h2 class="mb-4">{{ data.sections[0].content.main }}</h2>
+        <div class="clef-info mb-4">
+            <p class="lead">To help remember, the notes on the lines can be remembered with the {{ data.sections[0].content.mnemonics.type }} <strong>"{{ data.sections[0].content.mnemonics.lines }}"</strong>, and the spaces {{ data.sections[0].content.mnemonics.spaces_text }} <strong>"{{ data.sections[0].content.mnemonics.spaces }}"</strong></p>
+        </div>
 
-    <div class="keyboard-section mt-5">
-        <div class="keyboard-image text-center">
-            <img src="{{ data.sections[0].image }}" alt="Piano keyboard showing natural notes" class="img-fluid">
+        <div class="visual-section text-center">
+            <img src="{{ data.sections[0].image }}" alt="{{ data.sections[0].alt_text }}" class="img-fluid mb-4">
         </div>
     </div>
 

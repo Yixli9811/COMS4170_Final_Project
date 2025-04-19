@@ -159,3 +159,18 @@ body {
     padding: 0.5rem 1.5rem;
     font-size: 1.1rem;
 }
+
+/* Welcome Page Styles */
+.welcome-image-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.welcome-image {
+    max-height: 400px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

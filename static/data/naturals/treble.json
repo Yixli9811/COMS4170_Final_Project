@@ -1,0 +1,24 @@
+{
+    "title": "Learning the Basics: Treble Clef",
+    "description": "Learn to read notes on the treble clef",
+    "sections": [
+        {
+            "title": "Treble Clef Information",
+            "content": {
+                "main": "Treble Clef: typically played with your right hand",
+                "mnemonics": {
+                    "lines": "Every Good Boy Does Fine",
+                    "spaces": "FACE"
+                }
+            },
+            "image": "/static/images/Naturals_Learning/treble-clef-notes.jpg",
+            "alt_text": "Treble clef staff and notes"
+        }
+    ],
+    "navigation": {
+        "previous": "/learn/naturals",
+        "next": "/learn/bass",
+        "previous_text": "Back to Natural Notes",
+        "next_text": "Next: Bass Clef"
+    }
+} 

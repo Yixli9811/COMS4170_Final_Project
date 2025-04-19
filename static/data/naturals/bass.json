@@ -1,0 +1,24 @@
+{
+    "title": "Learning the Basics: Bass Clef",
+    "description": "Learn to read notes on the bass clef",
+    "sections": [
+        {
+            "title": "Bass Clef Information",
+            "content": {
+                "main": "Bass Clef: typically for your left hand",
+                "mnemonics": {
+                    "lines": "Good Boys Do Fine Always",
+                    "spaces": "All Cows Eat Grass"
+                }
+            },
+            "image": "/static/images/Naturals_Learning/bass-clef-notes.jpg",
+            "alt_text": "Bass clef staff and notes"
+        }
+    ],
+    "navigation": {
+        "previous": "/learn/treble",
+        "next": "/learn/accidentals",
+        "previous_text": "Back to Treble Clef",
+        "next_text": "Next: Accidentals"
+    }
+} 

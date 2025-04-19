@@ -7,6 +7,23 @@
     <h1>{{ data.title }}</h1>
     <p class="lead">{{ data.welcome_text }}</p>
     <p>{{ data.secondary_text }}</p>
-    <img src="{{ data.image_url }}" alt="Piano Keyboard" class="img-fluid my-4">
+    <div class="welcome-image-container my-4">
+        <img src="{{ data.image_url }}" alt="Piano Keyboard" class="img-fluid welcome-image">
+    </div>
+    <button id="startButton" class="btn btn-primary btn-lg">Start Learning</button>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('#startButton').click(function() {
+            $.post('/start', function(response) {
+                if (response.status === 'success') {
+                    window.location.href = '/learn';
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

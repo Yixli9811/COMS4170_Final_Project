@@ -1,0 +1,24 @@
+{
+    "title": "Learning the Basics: Naturals",
+    "description": "Learn about natural notes on the piano keyboard",
+    "sections": [
+        {
+            "title": "Basic Information",
+            "content": [
+                "Naturals are played on the white keys of the piano!",
+                "The notes are: C, D, E, F, G, A, B, C",
+                {
+                    "text": "We say that between each natural note, it is a whole step! However, between E and F is a half note and between B and C is also a half note",
+                    "subpoint": "This can be remembered because when looking at a keyboard, if there is a black key in between, it makes it a whole step, otherwise it's a half step"
+                }
+            ],
+            "image": "/static/images/Naturals_Learning/naturals.jpg"
+        }
+    ],
+    "navigation": {
+        "previous": "/learn",
+        "next": "/learn/treble",
+        "previous_text": "Back to Learn",
+        "next_text": "Next: Treble Clef"
+    }
+} 
