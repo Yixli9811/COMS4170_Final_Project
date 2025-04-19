@@ -10,20 +10,8 @@
     <div class="welcome-image-container my-4">
         <img src="{{ data.image_url }}" alt="Piano Keyboard" class="img-fluid welcome-image">
     </div>
-    <button id="startButton" class="btn btn-primary btn-lg">Start Learning</button>
+	<div class="navigation-buttons mt-5 text-center">
+        <a href="/learn" class="btn btn-primary">Start Learning</a>
+    </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
-<script>
-    $(document).ready(function() {
-        $('#startButton').click(function() {
-            $.post('/start', function(response) {
-                if (response.status === 'success') {
-                    window.location.href = '/learn';
-                }
-            });
-        });
-    });
-</script>
 {% endblock %}

@@ -11,14 +11,14 @@
                     "spaces": "All Cows Eat Grass"
                 }
             },
-            "image": "/static/images/Naturals_Learning/bass-clef-notes.jpg",
+            "image": "/static/images/Naturals_Learning/bass-clef-notes.svg",
             "alt_text": "Bass clef staff and notes"
         }
     ],
     "navigation": {
         "previous": "/learn/treble",
-        "next": "/learn/accidentals",
+        "next": "/learn/naturals/notes",
         "previous_text": "Back to Treble Clef",
-        "next_text": "Next: Accidentals"
+        "next_text": "Next: Learn Each Natural Notes"
     }
 } 

@@ -7,16 +7,19 @@
     <h1 class="text-center mb-5">{{ data.title }}</h1>
     
     <div class="section-container">
-        <h2>{{ data.sections[0].content.main }}</h2>
-        <div class="text-center mb-4">
-            <p class="lead">
-                To help remember, the notes on the lines can be remembered with <strong>"{{ data.sections[0].content.mnemonics.lines }}"</strong>, 
-                and the spaces with <strong>"{{ data.sections[0].content.mnemonics.spaces }}"</strong>
-            </p>
-        </div>
-
-        <div class="image-wrapper">
-            <img src="{{ data.sections[0].image }}" alt="{{ data.sections[0].alt_text }}" class="img-fluid">
+        <h2 class="mb-4">{{ data.subtitle }}</h2>
+        <div class="notes-grid">
+            <div class="row justify-content-center g-4">
+                {% for note in data.notes %}
+                <div class="col-md-3 col-sm-4 col-6">
+                    <a href="/learn/naturals/notes/{{ note|lower }}" class="text-decoration-none">
+                        <div class="note-item text-center">
+                            <h3 class="note-label">{{ note }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 

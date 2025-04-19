@@ -1,0 +1,12 @@
+{
+    "title": "Learning the Basics: Naturals",
+    "subtitle": "Learn Each Note",
+    "description": "Learn about each natural note and its position on the staff",
+    "notes": ["C", "D", "E", "F", "G", "A", "B"],
+    "navigation": {
+        "previous": "/learn/bass",
+        "next": "/learn/accidentals",
+        "previous_text": "Back to Bass Clef",
+        "next_text": "Next: Accidentals"
+    }
+} 

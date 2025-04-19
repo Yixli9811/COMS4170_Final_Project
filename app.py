@@ -34,6 +34,7 @@ def home():
 
 @app.route('/start', methods=['POST'])
 def start():
+	user_actions = []
 	record_action('start', {'page': 'welcome'})
 	return jsonify({"status": "success"})
 
@@ -72,6 +73,34 @@ def learn_challenge():
 	record_action('page_visit', {'page': 'challenge'})
 	page_data = load_json_data('challenge', 'challenge')
 	return render_template('challenge/learn_challenge.html', data=page_data)
+
+@app.route('/learn/naturals/notes')
+def learn_natural_notes():
+	record_action('page_visit', {'page': 'natural_notes'})
+	page_data = load_json_data('naturals', 'notes')
+	return render_template('naturals/learn_notes.html', data=page_data)
+
+@app.route('/learn/naturals/notes/<note>')
+def learn_note(note):
+	record_action('page_visit', {'page': f'note_{note}'})
+	note = note.upper()
+	notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+	if note not in notes:
+		return "Note not found", 404
+	
+	note_data = {
+		'note': note,
+		'clef_image': f'/static/images/Naturals_Learning/{note.lower()}_clef.webp',
+		'piano_image': f'/static/images/Naturals_Learning/{note.lower()}_piano.webp',
+		'sound': f'/static/audios/naturals/{note.lower()}6.mp3',
+		'description': f'This is the note {note}. It is a natural note played on a white key.',
+	}
+	
+	note_index = notes.index(note)
+	if note_index < len(notes) - 1:
+		note_data['next_note'] = notes[note_index + 1]
+	
+	return render_template('naturals/note.html', data=note_data)
 
 if __name__ == '__main__':
 	app.run(port=5001, debug=True)

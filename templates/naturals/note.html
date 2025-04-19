@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Note {{ data.note }} - Melody Muse{% endblock %}
+
+{% block content %}
+<div class="learn-content">
+    <h1 class="note-title text-center mb-5">Note {{ data.note }}</h1>
+    
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="section-container">
+                <h2>Find it on the Clefs</h2>
+                <div class="image-wrapper">
+                    <img src="{{ data.clef_image }}" alt="Note {{ data.note }} on clef" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="section-container">
+                <h2>Find it on the Piano</h2>
+                <div class="image-wrapper">
+                    <img src="{{ data.piano_image }}" alt="Note {{ data.note }} on piano keyboard" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="section-container">
+                <h2>Listen to the Note</h2>
+                <div class="audio-wrapper">
+                    <audio id="noteAudio" controls>
+                        <source src="{{ data.sound }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation-buttons mt-5 text-center">
+        <a href="/learn/naturals/notes" class="btn btn-secondary me-2">Back to Notes</a>
+        {% if data.next_note %}
+        <a href="/learn/naturals/notes/{{ data.next_note|lower }}" class="btn btn-primary">Next: Note {{ data.next_note }}</a>
+        {% else %}
+        <a href="/learn/accidentals" class="btn btn-primary">Next: Accidentals</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#learnBtn').addClass('active');
+});
+</script>
+{% endblock %} 
