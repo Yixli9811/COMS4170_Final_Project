@@ -1,0 +1,13 @@
+{
+    "title": "Learning the Basics: Naturals",
+    "subtitle": "Learn Each Note",
+    "description": "Learn about each natural note and its position on the staff",
+    "sharp_notes": ["C#", "D#", "E#", "F#", "G#", "A#", "B#"],
+    "flat_notes": ["C♭", "D♭", "E♭", "F♭", "G♭", "A♭", "B♭"],
+    "navigation": {
+        "previous": "/learn/accidentals",
+        "next": "/learn/accidentals",
+        "previous_text": "Back to Basics",
+        "next_text": "Next: Accidentals"
+    }
+} 

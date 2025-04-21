@@ -102,5 +102,41 @@ def learn_note(note):
 	
 	return render_template('naturals/note.html', data=note_data)
 
+@app.route('/learn/accidentals/notes')
+def learn_accidentals_notes():
+	record_action('page_visit', {'page': 'natural_notes'})
+	page_data = load_json_data('accidentals', 'notes')
+	return render_template('accidentals/learn_notes.html', data=page_data)
+
+@app.route('/learn/accidentals/notes/<note>')
+def learn_accidentals_note(note):
+	record_action('page_visit', {'page': f'note_{note}'})
+	#note = note.upper()
+	print(note)
+	notes = ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#', 'C♭', 'D♭', 'E♭', 'F♭', 'G♭', 'A♭', 'B♭']
+	if note not in notes:
+		return "Note not found", 404
+	if note[-1] == "#":
+		note_file = note[0] + "_sharp"
+	else:
+		note_file = note[0] + "_flat"
+	print(note_file)
+	
+	note_data = {
+		'note': note,
+		'treble_clef_image': f'/static/images/Accidentals_Learning/{note_file}/treble.png',
+		'bass_clef_image': f'/static/images/Accidentals_Learning/{note_file}/bass.png',
+		'piano_image': f'/static/images/Accidentals_Learning/{note_file}/piano.png',
+		'sound': f'/static/audios/accidentals/{note_file}.mp3',
+		'description': f'This is the note {note}. It is a natural note played on a white key.',
+	}
+	print(note_data)
+	
+	note_index = notes.index(note)
+	if note_index < len(notes) - 1:
+		note_data['next_note'] = notes[note_index + 1]
+	
+	return render_template('accidentals/note.html', data=note_data)
+
 if __name__ == '__main__':
 	app.run(port=5001, debug=True)

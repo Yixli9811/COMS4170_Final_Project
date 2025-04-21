@@ -1,0 +1,24 @@
+{
+    "title": "Learning the Basics: Accidentals",
+    "description": "Learn about accidentals on the piano keyboard",
+    "sections": [
+        {
+            "title": "Basic Information",
+            "content": [
+                "Accidentals raises or lowers notes by half a step.",
+                {
+                    "text":  "Sharps raises the notes, while flats lower the notes!",
+                    "subpoint": "Trick to Remember Equivalencies! : when converting between a sharp to a flat, the flat equivalent is always the note above! (C# = D♭) and vice versa!"
+                },
+                "Note: E# = F, B# = C, C♭ = B, F♭ = E"
+            ],
+            "image": "/static/images/Accidentals_Learning/Accidentals-Notes.png"
+        }
+    ],
+    "navigation": {
+        "previous": "/learn",
+        "next": "/learn/accidentals/notes",
+        "previous_text": "Back to Learn",
+        "next_text": "Next: Notes"
+    }
+} 

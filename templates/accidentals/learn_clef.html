@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }} - Melody Muse{% endblock %}
+
+{% block content %}
+<div class="learn-content">
+    <h1 class="text-center mb-5">{{ data.title }}</h1>
+    
+    <div class="section-container">
+        <h2>{{ data.sections[0].content.main }}</h2>
+        <div class="text-center mb-4">
+            <p class="lead">
+                To help remember, the notes on the lines can be remembered with <strong>"{{ data.sections[0].content.mnemonics.lines }}"</strong>, 
+                and the spaces with <strong>"{{ data.sections[0].content.mnemonics.spaces }}"</strong>
+            </p>
+        </div>
+
+        <div class="image-wrapper">
+            <img src="{{ data.sections[0].image }}" alt="{{ data.sections[0].alt_text }}" class="img-fluid">
+        </div>
+    </div>
+
+    <div class="navigation-buttons mt-5 text-center">
+        <a href="{{ data.navigation.previous }}" class="btn btn-secondary me-2">{{ data.navigation.previous_text }}</a>
+        <a href="{{ data.navigation.next }}" class="btn btn-primary">{{ data.navigation.next_text }}</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#learnBtn').addClass('active');
+});
+</script>
+{% endblock %} 

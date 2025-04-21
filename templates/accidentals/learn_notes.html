@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }} - Melody Muse{% endblock %}
+
+{% block content %}
+<div class="learn-content">
+    <h1 class="text-center mb-5">{{ data.title }}</h1>
+    
+    <div class="section-container">
+        <h2 class="mb-4">{{ data.subtitle }}</h2>
+        <div class="notes-grid">
+            <div class="row justify-content-center g-4">
+                {% for note in data.sharp_notes %}
+                <div class="col-md-3 col-sm-4 col-6">
+                    <a href="/learn/accidentals/notes/{{ note | urlencode }}" class="text-decoration-none">
+                        <div class="note-item text-center">
+                            <h3 class="note-label">{{ note }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row justify-content-center g-4">
+                {% for note in data.flat_notes %}
+                <div class="col-md-3 col-sm-4 col-6">
+                    <a href="/learn/accidentals/notes/{{note}}" class="text-decoration-none">
+                        <div class="note-item text-center">
+                            <h3 class="note-label">{{ note }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation-buttons mt-5 text-center">
+        <a href="{{ data.navigation.previous }}" class="btn btn-secondary me-2">{{ data.navigation.previous_text }}</a>
+        <a href="{{ data.navigation.next }}" class="btn btn-primary">{{ data.navigation.next_text }}</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#learnBtn').addClass('active');
+});
+</script>
+{% endblock %} 
