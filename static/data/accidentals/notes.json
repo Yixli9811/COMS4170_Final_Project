@@ -6,8 +6,8 @@
     "flat_notes": ["C♭", "D♭", "E♭", "F♭", "G♭", "A♭", "B♭"],
     "navigation": {
         "previous": "/learn/accidentals",
-        "next": "/learn/accidentals",
+        "next": "/learn/challenge",
         "previous_text": "Back to Basics",
-        "next_text": "Next: Accidentals"
+        "next_text": "Next: Challenge"
     }
 } 

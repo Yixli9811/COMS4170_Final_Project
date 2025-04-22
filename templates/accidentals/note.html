@@ -43,11 +43,11 @@
     </div>
 
     <div class="navigation-buttons mt-5 text-center">
-        <a href="/learn/naturals/notes" class="btn btn-secondary me-2">Back to Notes</a>
+        <a href="/learn/accidentals/notes" class="btn btn-secondary me-2">Back to Notes</a>
         {% if data.next_note %}
-        <a href="/learn/naturals/notes/{{ data.next_note|lower }}" class="btn btn-primary">Next: Note {{ data.next_note }}</a>
+        <a href="/learn/accidentals/notes/{{ data.next_note | urlencode }}" class="btn btn-primary">Next: Note {{ data.next_note }}</a>
         {% else %}
-        <a href="/learn/accidentals" class="btn btn-primary">Next: Accidentals</a>
+        <a href="/learn/challenge" class="btn btn-primary">Next: Challenge Mode</a>
         {% endif %}
     </div>
 </div>

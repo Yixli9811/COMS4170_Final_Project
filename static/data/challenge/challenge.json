@@ -1,0 +1,22 @@
+{
+    "title": "Challenge Mode",
+    "description": "Learn about more challenging parts of the piano",
+    "sections": [
+        {
+            "title": "Challenge Mode",
+            "content": [
+                "When notes go above or below the staff, we use ledger lines — short lines added above or below the staff to show where those extra notes go",
+                "For super high notes just keep counting up the musical alphabet! The same rule applies downward on the bass clef for super low notes. It’s like extending the staff in both directions — you just keep the pattern going!"
+            ],
+            "image": "/static/images/Challenge_Learning/high_e.png",
+            "image_text": "Starting from G, we can count up to be G, B, D, then a half step to E. Another way is to read it half step a time by looking at each increment from space to line." 
+
+        }
+    ],
+    "navigation": {
+        "previous": "/learn/accidentals/notes",
+        "next": "/quiz",
+        "previous_text": "Back to Accidentals Notes",
+        "next_text": "Next: Quiz"
+    }
+} 

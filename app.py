@@ -133,9 +133,9 @@ def learn_accidentals_note(note):
 	print(note_data)
 	
 	note_index = notes.index(note)
+	print(note_index)
 	if note_index < len(notes) - 1:
 		note_data['next_note'] = notes[note_index + 1]
-	
 	return render_template('accidentals/note.html', data=note_data)
 
 if __name__ == '__main__':
