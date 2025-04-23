@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }} - Melody Muse{% endblock %}
+
+{% block content %}
+<div class="learn-content">
+    <h1 class="text-center mb-5">Your Score: {{ data.currentScore }}/{{data.maxScore}}</h1>
+
+    <div class="navigation-buttons mt-5 text-center">
+        <a href="/quiz" class="btn btn-secondary me-2">Back to Quizzes</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#quizBtn').addClass('active');
+});
+</script>
+{% endblock %} 

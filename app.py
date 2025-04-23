@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 import datetime
 import json
+import random
 
 app = Flask(__name__)
 
@@ -26,6 +27,9 @@ def load_json_data(folder, filename):
 				return json.load(f)
 	except FileNotFoundError:
 		return {}
+
+currentScore = 0
+maxScore = 0
 
 @app.route('/')
 def home():
@@ -137,6 +141,79 @@ def learn_accidentals_note(note):
 	if note_index < len(notes) - 1:
 		note_data['next_note'] = notes[note_index + 1]
 	return render_template('accidentals/note.html', data=note_data)
+
+
+@app.route('/quiz')
+def quiz():
+	record_action('page_visit', {'page': 'quiz'})
+	page_data = load_json_data(None, 'learn')
+	return render_template('quiz.html', data=page_data)
+
+@app.route('/quiz/result')
+def quiz_results():
+	data = {
+		"currentScore": currentScore,
+		"maxScore": maxScore
+	}
+	return render_template('naturals/quiz_results.html', data=data)
+
+
+@app.route('/quiz/naturals')
+def quiz_naturals():
+	record_action('page_visit', {'page': 'quiz'})
+	page_data = load_json_data('naturals', 'naturals_quiz')
+	return render_template('naturals/quiz_naturals.html', data=page_data)
+
+@app.route('/quiz/naturals/<id>')
+def quiz_naturals_question(id):
+	global currentScore, maxScore
+
+	id = int(id)
+
+	if id == 1: 
+		currentScore = 0
+		maxScore = 15
+
+	questionid = ""
+	# if id < 6: questionid += "t"
+	# elif id < 11: questionid += "b"
+	# else:
+	# 	clefs = ["b", "t"]
+	# 	random.Random(id).shuffle(clefs)
+	# 	questionid += clefs[0]
+	questionid += "t"
+
+
+
+	notes = ["a", "b", "c", "d", "e", "f", "g"]
+	random.Random(id).shuffle(notes)
+	questionid += notes[0]
+	answer = notes[0]
+
+	if id == 15: 
+		next_link = '/quiz/result'
+	else:
+		next_link = '/quiz/naturals/' + str(id+1)
+
+	question = {
+		'id' : questionid,
+		'number': id,
+		'image': f'/static/images/Naturals_Quiz/{questionid}.png',
+		'currentScore' : currentScore,
+		'maxScore': maxScore,
+		'answer': answer,
+		'next_link': next_link
+	}
+
+	record_action('page_visit', {'page': 'quiz'})
+	page_data = load_json_data('naturals', 'naturals')
+	return render_template('naturals/quiz_naturals_question.html', data=page_data, question = question)
+
+@app.route('/quiz/correct', methods=['POST'])
+def addCorrect():
+	global currentScore
+	currentScore += 1
+	return jsonify(data = "ok ok")
 
 if __name__ == '__main__':
 	app.run(port=5001, debug=True)

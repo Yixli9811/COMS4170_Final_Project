@@ -1,0 +1,20 @@
+{
+    "title": "Quiz: Naturals",
+    "description": "Quiz on natural notes on the piano keyboard",
+    "sections": [
+        {
+            "title": "Ready to start the quiz?",
+            "content": [
+                "This quiz contains 15 randomly generated questions.",
+                "The first 5 questions are treble clef, the next 5 questions are base clef, and the last 5 are randomly generated."
+            ],
+            "image": "/static/images/Naturals_Learning/naturals.jpg"
+        }
+    ],
+    "navigation": {
+        "previous": "/quiz",
+        "next": "/quiz/naturals/1",
+        "previous_text": "Back to Quizzes",
+        "next_text": "Start Quiz!"
+    }
+} 
