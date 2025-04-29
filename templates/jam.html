@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Jam Space - Melody Muse{% endblock %}
+
+{% block content %}
+<div class="container jam-container mt-5">
+  <h1 class="text-center mb-4">Jam Space</h1>
+  <div id="keyboard-wrapper" class="d-flex justify-content-center">
+    <div id="keyboard" style="position: relative; width: 1260px; height: 200px;">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    $('#jamBtn').addClass('active');
+
+    const whiteKeys = ['C','D','E','F','G','A','B'];
+    const blackKeys = ['Db', 'Eb', null, 'Gb', 'Ab', 'Bb', null];
+    const startOctave = 3, octaves = 3;
+    const kb = document.getElementById('keyboard');
+    const whiteW = 60, blackW = 40;
+    let whiteCount = 0;
+
+    for (let o = startOctave; o < startOctave + octaves; o++) {
+      whiteKeys.forEach((w,i) => {
+        const wk = document.createElement('div');
+        wk.className = 'white-key';
+        wk.style.cssText = `float:left;width:${whiteW}px;height:200px;
+                            box-sizing:border-box;border:1px solid #444;
+                            background:#fff;cursor:pointer;`;
+        wk.dataset.note = `${w}${o}`;
+        kb.appendChild(wk);
+
+        const bkName = blackKeys[i];
+        if (bkName) {
+          const bk = document.createElement('div');
+          bk.className = 'black-key';
+          bk.style.cssText = `position:absolute;top:0;
+                             width:${blackW}px;height:120px;
+                             background:#000;cursor:pointer;
+                             left:${whiteCount*whiteW + whiteW - blackW/2}px;`;
+          bk.dataset.note = `${bkName}${o}`;
+          kb.appendChild(bk);
+        }
+        whiteCount++;
+      });
+    }
+
+    kb.addEventListener('click', e => {
+      const note = e.target.dataset.note;
+      if (!note) return;
+      new Audio(`/static/audios/jam/${note}.mp3`).play();
+      fetch('/jam/play', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({note})
+      });
+    });
+  </script>
+{% endblock %}

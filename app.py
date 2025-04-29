@@ -142,7 +142,6 @@ def learn_accidentals_note(note):
 		note_data['next_note'] = notes[note_index + 1]
 	return render_template('accidentals/note.html', data=note_data)
 
-
 @app.route('/quiz')
 def quiz():
 	record_action('page_visit', {'page': 'quiz'})
@@ -214,6 +213,18 @@ def addCorrect():
 	global currentScore
 	currentScore += 1
 	return jsonify(data = "ok ok")
+
+@app.route('/jam')
+def jam():
+	record_action('page_visit', {'page': 'jam'})
+	return render_template('jam.html')
+
+@app.route('/jam/play', methods=['POST'])
+def jam_play():
+	data = request.get_json()
+	note = data.get('note')
+	record_action('play_note', {'note': note})
+	return jsonify(status='ok')
 
 if __name__ == '__main__':
 	app.run(port=5001, debug=True)
