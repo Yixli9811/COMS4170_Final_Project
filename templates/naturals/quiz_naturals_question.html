@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }} - Melody Muse{% endblock %}
+
+{% block content %}
+
+
+<div class="learn-content">
+    <p> Current Score: {{question.currentScore}}/{{question.maxScore}} </p>
+    <h1 class="text-center mb-5">Question {{question.number}}</h1>
+
+    <h2>Which note is this?</h2>
+
+    <div class="keyboard-section mt-5">
+        <div class="keyboard-image text-center">
+            <img src="{{ question.image }}" alt="Piano keyboard with one letter visible" class="img-fluid">
+        </div>
+    </div>
+
+    <div class = "text-center" id ="s1"> 
+        Type the correct note (A-G): 
+        <input type="text" id="answer"> 
+    </div>
+
+    <div class="navigation-buttons mt-5 text-center" id = "s2">
+        <button id="check" class="btn btn-primary">Check Answer</button>
+    </div>
+
+    <div class="text-center hidden" id="correct">
+        <p class="correct"> Correct! </p>
+    </div>
+
+    <div class="text-center hidden" id="incorrect">
+        <p class = "incorrect"> Incorrect, the correct answer is {{question.answer}} </p>
+    </div>
+
+    <div class="navigation-buttons mt-5 text-center hidden" id = "s3">
+        <a href="{{ question.next_link }}" class="btn btn-primary">Next Question</a>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/checker.js') }}"></script>
+<script>
+        let id = {{question.id|tojson}}
+</script>
+
+{% endblock %} 

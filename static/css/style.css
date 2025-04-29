@@ -219,3 +219,27 @@ audio::-webkit-media-controls-panel {
     padding-bottom: var(--spacing-sm);
     border-bottom: 2px solid var(--border-light);
 }
+
+/*Quiz section:*/
+
+.correct {
+    background-color: darkgreen;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.incorrect {
+    background-color: red;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
