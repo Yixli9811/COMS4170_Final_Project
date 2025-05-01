@@ -1,8 +1,8 @@
 /* CSS Variables */
 :root {
     /* Colors */
-    --primary-color: #4299e1;
-    --primary-hover: #3182ce;
+    --primary-color: #2A9BB0;      /* Darker blue-teal */
+    --primary-hover: #207D8F;      /* Deeper blue-teal for hover */
     --secondary-color: #e2e8f0;
     --secondary-hover: #cbd5e0;
     --text-dark: #2d3748;
@@ -23,15 +23,24 @@
     --radius-lg: 10px;
 }
 
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600&family=Quicksand:wght@300;400;500;600&display=swap');
+
 /* Global Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
 }
 
 /* Typography */
+h1, h2, .navbar-brand {
+    font-family: 'Comfortaa', cursive;
+    letter-spacing: 0.02em;
+}
+
 h1 {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 2.75rem;
+    font-weight: 500;
     color: var(--text-dark);
     margin-bottom: var(--spacing-xl);
     text-align: center;
@@ -39,7 +48,7 @@ h1 {
 
 h2 {
     font-size: 1.75rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-dark);
     margin-bottom: var(--spacing-lg);
     text-align: center;
@@ -49,6 +58,7 @@ h2 {
     font-size: 1.2rem;
     line-height: 1.6;
     color: var(--text-muted);
+    font-weight: 400;
 }
 
 /* Navigation */
@@ -57,8 +67,8 @@ h2 {
 }
 
 .navbar-brand {
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: 1.6rem;
+    font-weight: 500;
 }
 
 /* Layout Components */
@@ -108,51 +118,100 @@ audio::-webkit-media-controls-panel {
 }
 
 .navigation-buttons .btn {
-    padding: 0.75rem var(--spacing-lg);
-    font-size: 1rem;
+    margin: 0 0.5rem;
+}
+
+/* Buttons */
+.btn-primary, .btn-primary:focus {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 2rem;
     font-weight: 500;
     border-radius: var(--radius-md);
     transition: all 0.2s ease;
 }
 
-.navigation-buttons .btn-secondary {
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(42, 155, 176, 0.2);
+}
+
+.btn-secondary, .btn-secondary:focus {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
     color: var(--text-dark);
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
 }
 
-.navigation-buttons .btn-secondary:hover {
+.btn-secondary:hover {
     background-color: var(--secondary-hover);
     border-color: var(--secondary-hover);
-}
-
-.navigation-buttons .btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.navigation-buttons .btn-primary:hover {
-    background-color: var(--primary-hover);
-    border-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Cards and Grids */
-.learn-card, .notes-grid .note-item {
+.learn-card {
     text-decoration: none;
     color: inherit;
     display: block;
-    background: var(--bg-light);
+    background: var(--bg-white);
     padding: var(--spacing-lg);
     border-radius: var(--radius-md);
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
+    height: 100%;
+    border: 2px solid var(--primary-color);
 }
 
-.card-title, .note-label {
+.learn-card .card {
+    height: 100%;
+    border: none;
+    background: transparent;
+}
+
+.learn-card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-lg);
+}
+
+.learn-card .card-title {
     font-size: 1.8rem;
     color: var(--text-dark);
     margin-bottom: var(--spacing-lg);
     font-weight: bold;
+    text-align: center;
+}
+
+.learn-card .music-notation {
+    width: 100%;
+    padding: var(--spacing-md);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+}
+
+.learn-card .music-notation img {
+    max-width: 100%;
+    height: auto;
+    min-height: 200px;
+    object-fit: contain;
+}
+
+.learn-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(42, 155, 176, 0.15);
+    border-color: var(--primary-hover);
 }
 
 /* Lists */
@@ -183,9 +242,14 @@ audio::-webkit-media-controls-panel {
 
 /* Welcome Page */
 .welcome-image-container {
-    max-width: 800px;
-    margin: var(--spacing-xl) auto;
-    padding: var(--spacing-md);
+    max-width: 600px;
+    margin: var(--spacing-lg) auto var(--spacing-md);
+}
+
+.welcome-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
 }
 
 /* Piano Specific */
