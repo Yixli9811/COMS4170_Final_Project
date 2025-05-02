@@ -549,3 +549,18 @@ audio::-webkit-media-controls-panel {
         padding: 1.5rem;
     }
 }
+
+/* Challenge Visual Section (for challenge/learn_challenge.html) */
+.challenge-visual-section {
+    max-width: 700px;
+    width: 100%;
+    gap: 2rem;
+}
+.challenge-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+}
+.challenge-image-text {
+    text-align: left;
+}

@@ -8,7 +8,7 @@
                 "Accidentals raises or lowers notes by half a step.",
                 {
                     "text":  "Sharps raises the notes, while flats lower the notes!",
-                    "subpoint": "Trick to Remember Equivalencies! : when converting between a sharp to a flat, the flat equivalent is always the note above! (C# = D♭) and vice versa!"
+                    "subpoint": "Trick to Remember Equivalencies! : when converting between a sharp to a flat, the flat equivalent is always the note above!"
                 },
                 "Note: E# = F, B# = C, C♭ = B, F♭ = E"
             ],
