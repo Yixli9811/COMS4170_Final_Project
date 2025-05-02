@@ -3,49 +3,46 @@
 {% block title %}Note {{ data.note }} - Melody Muse{% endblock %}
 
 {% block content %}
-<div class="learn-content">
-    <h1 class="note-title text-center mb-5">Note {{ data.note }}</h1>
-    
-    <div class="row g-4">
-        <div class="col-md-6">
-            <div class="section-container">
-                <h2>Find it on the Clefs</h2>
-                <div class="image-wrapper">
-                    <img src="{{ data.clef_image }}" alt="Note {{ data.note }} on clef" class="img-fluid">
+<div class="learn-page">
+    <div class="learn-container" style="max-width: 900px; margin: 0 auto;">
+        <h1 class="page-title text-center">Note {{ data.note }}</h1>
+        <div class="row g-4 align-items-stretch">
+            <div class="col-md-6 d-flex">
+                <div class="section-container flex-fill d-flex flex-column align-items-center justify-content-center" style="max-width: 420px; width: 100%;">
+                    <h2 class="text-center">Find it on the Clefs</h2>
+                    <div class="image-wrapper d-flex justify-content-center">
+                        <img src="{{ data.clef_image }}" alt="Note {{ data.note }} on clef" class="img-fluid" style="max-width: 420px; width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex">
+                <div class="section-container flex-fill d-flex flex-column align-items-center justify-content-center" style="gap: 1.5rem; max-width: 420px; width: 100%;">
+                    <div style="width: 100%;">
+                        <h2 class="text-center">Find it on the Piano</h2>
+                        <div class="image-wrapper d-flex justify-content-center">
+                            <img src="{{ data.piano_image }}" alt="Note {{ data.note }} on piano keyboard" class="img-fluid" style="width: 100%; height: auto;">
+                        </div>
+                    </div>
+                    <div style="width: 100%;">
+                        <h2 class="text-center">Listen to the Note</h2>
+                        <div class="audio-wrapper d-flex justify-content-center">
+                            <audio id="noteAudio" controls style="width: 100%;">
+                                <source src="{{ data.sound }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="section-container">
-                <h2>Find it on the Piano</h2>
-                <div class="image-wrapper">
-                    <img src="{{ data.piano_image }}" alt="Note {{ data.note }} on piano keyboard" class="img-fluid">
-                </div>
-            </div>
+        <div class="navigation-section mt-4 d-flex justify-content-center gap-3">
+            <a href="/learn/naturals/notes" class="nav-btn btn-back">Back to Notes</a>
+            {% if data.next_note %}
+            <a href="/learn/naturals/notes/{{ data.next_note|lower }}" class="nav-btn btn-next">Next: Note {{ data.next_note }}</a>
+            {% else %}
+            <a href="/learn/accidentals" class="nav-btn btn-next">Next: Accidentals</a>
+            {% endif %}
         </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="section-container">
-                <h2>Listen to the Note</h2>
-                <div class="audio-wrapper">
-                    <audio id="noteAudio" controls>
-                        <source src="{{ data.sound }}" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="navigation-buttons mt-5 text-center">
-        <a href="/learn/naturals/notes" class="btn btn-secondary me-2">Back to Notes</a>
-        {% if data.next_note %}
-        <a href="/learn/naturals/notes/{{ data.next_note|lower }}" class="btn btn-primary">Next: Note {{ data.next_note }}</a>
-        {% else %}
-        <a href="/learn/accidentals" class="btn btn-primary">Next: Accidentals</a>
-        {% endif %}
     </div>
 </div>
 {% endblock %}
