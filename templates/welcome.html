@@ -3,15 +3,17 @@
 {% block title %}{{ data.title }}{% endblock %}
 
 {% block content %}
-<div class="text-center">
-    <h1>{{ data.title }}</h1>
-    <p class="lead">{{ data.welcome_text }}</p>
-    <p>{{ data.secondary_text }}</p>
-    <div class="welcome-image-container my-4">
-        <img src="{{ data.image_url }}" alt="Piano Keyboard" class="img-fluid welcome-image">
-    </div>
-	<div class="navigation-buttons mt-5 text-center">
-        <a href="/learn" class="btn btn-primary">Start Learning</a>
+<div class="learn-page">
+    <div class="learn-container">
+        <h1 class="page-title">{{ data.title }}</h1>
+        <p class="lead text-center">{{ data.welcome_text }}</p>
+        <p class="text-center">{{ data.secondary_text }}</p>
+        <div class="welcome-image-container">
+            <img src="{{ data.image_url }}" alt="Piano Keyboard" class="img-fluid welcome-image">
+        </div>
+        <div class="navigation-section">
+            <a href="/learn" class="nav-btn btn-next">Start Learning</a>
+        </div>
     </div>
 </div>
 {% endblock %}
