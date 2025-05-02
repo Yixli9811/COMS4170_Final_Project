@@ -564,3 +564,29 @@ audio::-webkit-media-controls-panel {
 .challenge-image-text {
     text-align: left;
 }
+
+/* Note Buttons Layout (for learn_notes.html) */
+.note-buttons {
+    gap: 1.2rem;
+}
+
+.note-buttons-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.note-btn-wide {
+    min-width: 70px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-section.notes-section {
+    max-width: 900px;
+    margin: 0 auto;
+}
