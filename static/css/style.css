@@ -59,6 +59,7 @@ h2 {
 .navbar-brand {
     font-size: 1.8rem;
     font-weight: bold;
+    font-family: "Comfortaa";
 }
 
 /* Layout Components */
@@ -67,6 +68,7 @@ h2 {
     margin: 0 auto;
     padding: var(--spacing-xl) var(--spacing-md);
 }
+
 
 .section-container, .content-section {
     background-color: var(--bg-white);
