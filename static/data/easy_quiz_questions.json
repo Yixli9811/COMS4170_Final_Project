@@ -1,0 +1,95 @@
+[
+    {
+      "type": "fill_in",
+      "question": "What note is this?",
+      "image": "/static/images/Easy_Quiz/bass_b.png",
+      "answer": "B",
+      "explanation": "A is the note lying on the top ledger line. Going up half a step, we get B."
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What note would be played at this key?",
+      "image": "/static/images/Easy_Quiz/keyboard_a.png",
+      "options": ["C", "E", "G", "A"],
+      "answer": "A",
+      "explanation": "Remember that the keyboard keys go: C, D, E, F, G, A, B!s"
+    },
+    {
+      "type": "true_false",
+      "question": "Is this note A♭?",
+      "image": "/static/images/Easy_Quiz/treble_aflat.png",
+      "statement": "A♭",
+      "answer": "true",
+      "explanation": "The notes in the spaces of the treble clef can be remembered to spell: FACE! The little ♭ means flat!"
+    },
+    {
+      "type": "drag_and_drop",
+      "question": "Drag the correct note name to the note on the staff.",
+      "image": "/static/images/Easy_Quiz/treble_g.png",
+      "options": ["A", "F", "B", "G"],
+      "answer": "G",
+      "explanation": "The notes on the ledger lines in treble cleff can spell out Every Good Boy Does Fine"
+    },
+    {
+      "type": "true_false",
+      "question": "Is this note played on this key B#?",
+      "image": "/static/images/Easy_Quiz/keyboard_a#.png",
+      "statement": "A#",
+      "answer": false,
+      "explanation": "Remember that sharps for a note is the black key on the top right of it!"
+    },
+    {
+        "type": "fill_in",
+        "question": "What note is played on this key?",
+        "image": "/static/images/Easy_Quiz/keyboard_c.png",
+        "answer": "C",
+        "explanation": "Remember that C is the first note on the simplified keyboard -> it begins the cluster that only has 2 flats"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What is the note played on this key?",
+      "image": "/static/images/Easy_Quiz/keyboard_dflat.png",
+      "options": ["D♭", "F♭", "B#", "A#"],
+      "answer": "D♭",
+      "explanation": "Remember that flats for a natural is the black key to the top left of it!"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What note is?",
+      "image": "/static/images/Easy_Quiz/bass_c.png",
+      "options": ["E", "C", "A", "F"],
+      "answer": "C",
+      "explanation": "The first note between the bottom two ledger lines is A. Counting up a full whole step or 2 half steps we get to C."
+    },
+    {
+        "type": "fill_in",
+        "question": "What note is this?",
+        "image": "/static/images/Easy_Quiz/treble_e#.png",
+        "answer": "E#",
+        "explanation": "The notes on the ledger lines in treble cleff can be remembered as: Every Good Boy Does Fine, and the # is a sharp!"
+    },
+    {
+      "type": "drag_and_drop",
+      "question": "Drag the correct note name to the note on the staff.",
+      "image": "/static/images/Challenge_Quiz/bass_f.png",
+      "options": ["D", "A", "F", "B"],
+      "answer": "F",
+      "explanation": "Remember our saying to count ledger lines: Good Boys Do Fine Always"
+    },
+    {
+      "type": "true_false",
+      "question": "Is the note played on the key G?",
+      "image": "/static/images/Easy_Quiz/keyboard_g.png",
+      "statement": "G",
+      "answer": true,
+      "explanation": "Remember that the notes in the cluster with 3 sharps are: F, G, A"
+    },
+    {
+      "type": "multiple_choice",
+      "question": "What note is this?",
+      "image": "/static/images/Easy_Quiz/bass_c#.png",
+      "options": ["D#", "E#", "A#", "F#"],
+      "answer": "C#",
+      "explanation": "A is the note lying between the bottom two ledger lines. We go up a whole step to get to C. With the #, it means that it is a sharp!"
+    }
+  ] 
