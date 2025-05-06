@@ -590,3 +590,22 @@ audio::-webkit-media-controls-panel {
     max-width: 900px;
     margin: 0 auto;
 }
+
+.quiz-card-small {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+}
+.quiz-card-small .card-title {
+    font-size: 1.4rem;
+}
+.quiz-card-small .music-notation img {
+    max-width: 200px;
+}
+
+.challenge-image {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+}

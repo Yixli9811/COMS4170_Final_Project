@@ -1,0 +1,21 @@
+{
+    "title": "Challenge Mode Quiz",
+    "description": "Test your knowledge of ledger lines and high/low notes",
+    "sections": [
+        {
+            "title": "Ready for the Challenge?",
+            "content": [
+                "This quiz contains 10 questions about ledger lines and notes above/below the staff.",
+                "You'll need to identify notes that extend beyond the staff using ledger lines.",
+                "Remember: For high notes, count up the musical alphabet, and for low notes, count down!"
+            ],
+            "image": "/static/images/Challenge_Learning/high_e.png"
+        }
+    ],
+    "navigation": {
+        "previous": "/learn/challenge",
+        "next": "/quiz/challenge/1",
+        "previous_text": "Back to Challenge Mode",
+        "next_text": "Start Quiz!"
+    }
+}
