@@ -1,9 +1,10 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, session
 import datetime
 import json
 import random
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Needed for session
 
 # In-memory storage for user actions
 user_actions = []
@@ -156,12 +157,53 @@ def quiz_results():
 	}
 	return render_template('naturals/quiz_results.html', data=data)
 
-
 @app.route('/quiz/naturals')
 def quiz_naturals():
 	record_action('page_visit', {'page': 'quiz'})
 	page_data = load_json_data('naturals', 'naturals_quiz')
 	return render_template('naturals/quiz_naturals.html', data=page_data)
+
+@app.route('/quiz/challenge')
+def quiz_challenge():
+	record_action('page_visit', {'page': 'quiz'})
+	session['challenge_score'] = 0
+	page_data = load_json_data('challenge', 'challenge_quiz')
+	return render_template('challenge/quiz_challenge.html', data=page_data)
+
+@app.route('/quiz/challenge/correct', methods=['POST'])
+def challenge_add_correct():
+	session['challenge_score'] = session.get('challenge_score', 0) + 1
+	return jsonify(status='ok')
+
+@app.route('/quiz/challenge/<int:id>')
+def quiz_challenge_question(id):
+	record_action('page_visit', {'page': 'challenge_quiz'})
+	questions = load_json_data('challenge', 'challenge_questions')
+	total = len(questions)
+	idx = id - 1
+
+	if idx < 0 or idx >= total:
+		return "Question not found", 404
+
+	question = questions[idx]
+	question['number'] = id
+	question['total'] = total
+	question['currentScore'] = session.get('challenge_score', 0)
+	question['maxScore'] = total
+	if id < total:
+		question['next_link'] = f'/quiz/challenge/{id+1}'
+	else:
+		question['next_link'] = '/quiz/challenge/results'
+
+	return render_template('challenge/quiz_challenge_question.html', question=question)
+
+@app.route('/quiz/challenge/results')
+def quiz_challenge_results():
+	data = {
+		"currentScore": session.get('challenge_score', 0),
+		"maxScore": len(load_json_data('challenge', 'challenge_questions'))
+	}
+	return render_template('challenge/quiz_results.html', data=data)
 
 @app.route('/quiz/naturals/<id>')
 def quiz_naturals_question(id):

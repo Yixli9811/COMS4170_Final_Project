@@ -9,24 +9,23 @@
         <div class="main-content-stacked">
             <div class="info-section">
                 <h2>{{ data.sections[0].title }}</h2>
-                <div class="info-points">
+                <ul class="basic-info-list">
                     {% for item in data.sections[0].content %}
-                        {% if item is string %}
-                            <div class="info-item">{{ item }}</div>
-                        {% else %}
-                            <div class="info-item">
-                                {{ item.text }}
-                                <div class="key-rule">{{ item.subpoint }}</div>
-                            </div>
-                        {% endif %}
+                    {% if item is string %}
+                    <li>{{ item }}</li>
+                    {% else %}
+                    <li class="with-sub-point">
+                        {{ item.text }}
+                        <ul>
+                            <li>{{ item.subpoint }}</li>
+                        </ul>
+                    </li>
+                    {% endif %}
                     {% endfor %}
-                </div>
+                </ul>
             </div>
             <div class="challenge-visual-section visual-section-small d-flex align-items-center justify-content-center">
                 <img src="{{ data.sections[0].image }}" alt="Piano keyboard showing natural notes" class="challenge-image keyboard-image">
-                {% if data.sections[0].image_text %}
-                <div class="fs-5 challenge-image-text">{{ data.sections[0].image_text }}</div>
-                {% endif %}
             </div>
         </div>
         <div class="navigation-section">

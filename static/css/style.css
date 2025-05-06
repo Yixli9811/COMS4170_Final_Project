@@ -1,8 +1,8 @@
 /* CSS Variables */
 :root {
     /* Colors */
-    --primary-color: #4299e1;
-    --primary-hover: #3182ce;
+    --primary-color: #2A9BB0;      /* Darker blue-teal */
+    --primary-hover: #207D8F;      /* Deeper blue-teal for hover */
     --secondary-color: #e2e8f0;
     --secondary-hover: #cbd5e0;
     --text-dark: #2d3748;
@@ -23,15 +23,24 @@
     --radius-lg: 10px;
 }
 
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600&family=Quicksand:wght@300;400;500;600&display=swap');
+
 /* Global Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 420;
 }
 
 /* Typography */
+h1, h2, .navbar-brand {
+    font-family: 'Comfortaa', cursive;
+    letter-spacing: 0.02em;
+}
+
 h1 {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 2.75rem;
+    font-weight: 500;
     color: var(--text-dark);
     margin-bottom: var(--spacing-xl);
     text-align: center;
@@ -39,7 +48,7 @@ h1 {
 
 h2 {
     font-size: 1.75rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--text-dark);
     margin-bottom: var(--spacing-lg);
     text-align: center;
@@ -49,6 +58,7 @@ h2 {
     font-size: 1.2rem;
     line-height: 1.6;
     color: var(--text-muted);
+    font-weight: 450;
 }
 
 /* Navigation */
@@ -60,6 +70,7 @@ h2 {
     font-size: 1.8rem;
     font-weight: bold;
     font-family: "Comfortaa";
+    font-weight: 500;
 }
 
 /* Layout Components */
@@ -110,71 +121,124 @@ audio::-webkit-media-controls-panel {
 }
 
 .navigation-buttons .btn {
-    padding: 0.75rem var(--spacing-lg);
-    font-size: 1rem;
+    margin: 0 0.5rem;
+}
+
+/* Buttons */
+.btn-primary, .btn-primary:focus {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 2rem;
     font-weight: 500;
     border-radius: var(--radius-md);
     transition: all 0.2s ease;
 }
 
-.navigation-buttons .btn-secondary {
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(42, 155, 176, 0.2);
+}
+
+.btn-secondary, .btn-secondary:focus {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
     color: var(--text-dark);
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
 }
 
-.navigation-buttons .btn-secondary:hover {
+.btn-secondary:hover {
     background-color: var(--secondary-hover);
     border-color: var(--secondary-hover);
-}
-
-.navigation-buttons .btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.navigation-buttons .btn-primary:hover {
-    background-color: var(--primary-hover);
-    border-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Cards and Grids */
-.learn-card, .notes-grid .note-item {
+.learn-card {
     text-decoration: none;
     color: inherit;
     display: block;
-    background: var(--bg-light);
+    background: var(--bg-white);
     padding: var(--spacing-lg);
     border-radius: var(--radius-md);
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
+    height: 100%;
+    border: 2px solid var(--primary-color);
 }
 
-.card-title, .note-label {
+.learn-card .card {
+    height: 100%;
+    border: none;
+    background: transparent;
+}
+
+.learn-card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-lg);
+}
+
+.learn-card .card-title {
     font-size: 1.8rem;
     color: var(--text-dark);
     margin-bottom: var(--spacing-lg);
     font-weight: bold;
+    text-align: center;
+}
+
+.learn-card .music-notation {
+    width: 100%;
+    padding: var(--spacing-md);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+}
+
+.learn-card .music-notation img {
+    max-width: 100%;
+    height: auto;
+    min-height: 200px;
+    object-fit: contain;
+}
+
+.learn-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(42, 155, 176, 0.15);
+    border-color: var(--primary-hover);
 }
 
 /* Lists */
 .basic-info-list {
     list-style-type: none;
-    padding-left: var(--spacing-lg);
+    padding-left: 0;
+    margin: 0;
 }
 
 .basic-info-list li {
     position: relative;
-    margin-bottom: var(--spacing-md);
-    font-size: 1.2rem;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.1rem;
     line-height: 1.6;
+    padding-left: var(--spacing-xl);
 }
 
 .basic-info-list li::before {
     content: "•";
     position: absolute;
-    left: -1.5rem;
+    left: 0;
     color: var(--primary-color);
+    font-size: 1.5rem;
+    line-height: 1;
 }
 
 .basic-info-list ul {
@@ -185,9 +249,14 @@ audio::-webkit-media-controls-panel {
 
 /* Welcome Page */
 .welcome-image-container {
-    max-width: 800px;
-    margin: var(--spacing-xl) auto;
-    padding: var(--spacing-md);
+    max-width: 600px;
+    margin: var(--spacing-lg) auto var(--spacing-md);
+}
+
+.welcome-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
 }
 
 /* Piano Specific */
@@ -244,4 +313,302 @@ audio::-webkit-media-controls-panel {
 
 .hidden {
     display: none;
+}
+
+/* Content Sections */
+.content-section {
+    background-color: var(--bg-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    border: 2px solid var(--primary-color);
+    height: 100%;
+}
+
+.content-section h2 {
+    color: var(--text-dark);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+.keyboard-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: var(--spacing-md);
+}
+
+.keyboard-section img {
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .keyboard-section {
+        margin-top: var(--spacing-xl);
+        padding: var(--spacing-sm);
+    }
+    
+    .keyboard-section img {
+        max-width: 70%;
+    }
+    
+    .content-section {
+        margin-bottom: var(--spacing-lg);
+    }
+}
+
+.concept-highlight {
+    display: inline-block;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 2px;
+    font-weight: 500;
+}
+
+.key-concept {
+    background-color: rgba(42, 155, 176, 0.1);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: var(--spacing-sm) 0;
+    display: inline-block;
+}
+
+/* Learn Page Layout */
+.learn-page {
+    min-height: calc(100vh - 76px);
+    display: flex;
+    align-items: flex-start;
+    padding: 2rem 0;
+}
+
+.learn-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.page-title {
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.main-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.main-content-stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.info-section {
+    flex: 1;
+    background: var(--bg-white);
+    border: 2px solid var(--primary-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    width: 100%;
+}
+
+.info-section h2 {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.info-points {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.info-item {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.highlight {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.notes-display {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.note-group {
+    background: rgba(42, 155, 176, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+
+.exception-notes {
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+}
+
+.note-pair {
+    background: rgba(42, 155, 176, 0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    margin: 0 0.2rem;
+}
+
+.key-rule {
+    border-top: 2px solid rgba(42, 155, 176, 0.2);
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    font-weight: 500;
+}
+
+.visual-section {
+    flex: 0 0 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visual-section-small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.keyboard-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.navigation-section {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.nav-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-back {
+    background: var(--secondary-color);
+    color: var(--text-dark);
+}
+
+.btn-next {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-back:hover {
+    background: var(--secondary-hover);
+}
+
+.btn-next:hover {
+    background: var(--primary-hover);
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .visual-section, .visual-section-small {
+        order: 0;
+        max-width: 100%;
+    }
+
+    .keyboard-image {
+        max-width: 100%;
+    }
+
+    .info-section {
+        padding: 1.5rem;
+    }
+}
+
+/* Challenge Visual Section (for challenge/learn_challenge.html) */
+.challenge-visual-section {
+    max-width: 700px;
+    width: 100%;
+    gap: 2rem;
+}
+.challenge-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+}
+.challenge-image-text {
+    text-align: left;
+}
+
+/* Note Buttons Layout (for learn_notes.html) */
+.note-buttons {
+    gap: 1.2rem;
+}
+
+.note-buttons-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.note-btn-wide {
+    min-width: 70px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-section.notes-section {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.quiz-card-small {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+}
+.quiz-card-small .card-title {
+    font-size: 1.4rem;
+}
+.quiz-card-small .music-notation img {
+    max-width: 200px;
+}
+
+.challenge-image {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
 }

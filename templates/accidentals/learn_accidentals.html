@@ -3,36 +3,35 @@
 {% block title %}{{ data.title }} - Melody Muse{% endblock %}
 
 {% block content %}
-<div class="learn-content">
-    <h1 class="text-center mb-5">{{ data.title }}</h1>
-    
-    <div class="content-section">
-        <h2>{{ data.sections[0].title }}</h2>
-        <ul class="basic-info-list">
-            {% for item in data.sections[0].content %}
-            {% if item is string %}
-            <li>{{ item }}</li>
-            {% else %}
-            <li class="with-sub-point">
-                {{ item.text }}
-                <ul>
-                    <li>{{ item.subpoint }}</li>
-                </ul>
-            </li>
-            {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div class="keyboard-section mt-5">
-        <div class="keyboard-image text-center">
-            <img src="{{ data.sections[0].image }}" alt="Piano keyboard showing natural notes" class="img-fluid">
+<div class="learn-page">
+    <div class="learn-container">
+        <h1 class="page-title">{{ data.title }}</h1>
+        <div class="main-content-stacked">
+            <div class="info-section">
+                <h2>Basic Information</h2>
+                <div class="info-points">
+                    <div class="info-item">
+                        <span class="highlight">Accidentals</span> raise or lower notes by half a step.
+                    </div>
+                    <div class="info-item">
+                        <span class="highlight">Sharps</span> raise the notes, while <span class="highlight">flats</span> lower the notes!
+                    </div>
+                    <div class="info-item">
+                        <span class="highlight">Trick to Remember Equivalencies!</span> When converting between a sharp to a flat, the flat equivalent is always the note above!
+                    </div>
+                    <div class="info-item notes-display">
+                        Note: <span class="note-group">E# = F</span>, <span class="note-group">B# = C</span>, <span class="note-group">C♭ = B</span>, <span class="note-group">F♭ = E</span>
+                    </div>
+                </div>
+            </div>
+            <div class="visual-section-small" style="max-width: 400px;">
+                <img src="{{ data.sections[0].image }}" alt="Piano keyboard showing accidentals" class="keyboard-image">
+            </div>
         </div>
-    </div>
-
-    <div class="navigation-buttons mt-5 text-center">
-        <a href="{{ data.navigation.previous }}" class="btn btn-secondary me-2">{{ data.navigation.previous_text }}</a>
-        <a href="{{ data.navigation.next }}" class="btn btn-primary">{{ data.navigation.next_text }}</a>
+        <div class="navigation-section">
+            <a href="{{ data.navigation.previous }}" class="nav-btn btn-back">{{ data.navigation.previous_text }}</a>
+            <a href="{{ data.navigation.next }}" class="nav-btn btn-next">{{ data.navigation.next_text }}</a>
+        </div>
     </div>
 </div>
 {% endblock %}

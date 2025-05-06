@@ -3,52 +3,40 @@
 {% block title %}Learn - Melody Muse{% endblock %}
 
 {% block content %}
-<div class="learn-container">
-    <h1 class="text-center mb-4">Quiz your knowledge by section!</h1>
-    
-    <div class="row g-4">
-        <!-- Naturals Section -->
-        <div class="col-md-4">
-            <a href="{{ url_for('quiz_naturals') }}" class="learn-card">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <h2 class="card-title">Naturals</h2>
-                        <div class="music-notation">
-                            <img src="{{ url_for('static', filename='images/Learning_Main/naturals.jpg') }}" alt="Natural Notes" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Accidentals Section -->
-        <div class="col-md-4">
-            <a href="{{ url_for('learn_accidentals') }}" class="learn-card">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <h2 class="card-title">Accidentals</h2>
-                        <div class="music-notation">
-                            <img src="{{ url_for('static', filename='images/Learning_Main/accidentals.jpg') }}" alt="Accidental Notes" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Challenge Mode Section -->
-        <div class="col-md-4">
-            <a href="{{ url_for('learn_challenge') }}" class="learn-card">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <h2 class="card-title">Challenge Mode</h2>
-                        <div class="music-notation">
-                            <img src="{{ url_for('static', filename='images/Learning_Main/challenge.jpg') }}" alt="Challenge Mode" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
+<div class="learn-page">
+	<div class="learn-container">
+		<h1 class="text-center mb-4">Quiz your knowledge by section!</h1>
+		
+		<div class="row g-2 justify-content-center align-items-center">
+			<!-- Naturals and Accidentals Section -->
+			<div class="col-md-5 d-flex">
+				<a href="{{ url_for('quiz_naturals') }}" class="learn-card quiz-card-small w-100">
+					<div class="card h-100">
+						<div class="card-body text-center d-flex flex-column justify-content-center">
+							<h2 class="card-title">Naturals and Accidentals</h2>
+							<div class="music-notation">
+								<img src="{{ url_for('static', filename='images/Learning_Main/accidentals.jpg') }}" alt="Natural Notes" class="img-fluid">
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+	
+			<!-- Challenge Mode Section -->
+			<div class="col-md-5 d-flex">
+				<a href="{{ url_for('quiz_challenge') }}" class="learn-card quiz-card-small w-100">
+					<div class="card h-100">
+						<div class="card-body text-center d-flex flex-column justify-content-center">
+							<h2 class="card-title">Challenge Mode</h2>
+							<div class="music-notation">
+								<img src="{{ url_for('static', filename='images/Learning_Main/challenge.jpg') }}" alt="Challenge Mode" class="img-fluid">
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
 

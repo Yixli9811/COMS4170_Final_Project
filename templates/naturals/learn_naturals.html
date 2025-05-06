@@ -3,36 +3,41 @@
 {% block title %}{{ data.title }} - Melody Muse{% endblock %}
 
 {% block content %}
-<div class="learn-content">
-    <h1 class="text-center mb-5">{{ data.title }}</h1>
-    
-    <div class="content-section">
-        <h2>{{ data.sections[0].title }}</h2>
-        <ul class="basic-info-list">
-            {% for item in data.sections[0].content %}
-            {% if item is string %}
-            <li>{{ item }}</li>
-            {% else %}
-            <li class="with-sub-point">
-                {{ item.text }}
-                <ul>
-                    <li>{{ item.subpoint }}</li>
-                </ul>
-            </li>
-            {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div class="keyboard-section mt-5">
-        <div class="keyboard-image text-center">
-            <img src="{{ data.sections[0].image }}" alt="Piano keyboard showing natural notes" class="img-fluid">
+<div class="learn-page">
+    <div class="learn-container">
+        <h1 class="page-title">Learning the Basics: Naturals</h1>
+        
+        <div class="main-content-stacked">
+            <div class="info-section">
+                <h2>Basic Information</h2>
+                <div class="info-points">
+                    <div class="info-item">
+                        <span class="highlight">Naturals are played on the white keys</span> of the piano!
+                    </div>
+                    <div class="info-item notes-display">
+                        The notes are: <span class="note-group">C, D, E, F, G, A, B, C</span>
+                    </div>
+                    <div class="info-item">
+                        Between each natural note, it is a <span class="highlight">whole step</span>, except:
+                        <div class="exception-notes">
+                            <span class="note-pair">E → F</span> and <span class="note-pair">B → C</span> are half steps
+                        </div>
+                    </div>
+                    <div class="info-item key-rule">
+                        Remember: If there is a black key between notes = whole step, if not = half step
+                    </div>
+                </div>
+            </div>
+            
+            <div class="visual-section-small">
+                <img src="{{ data.sections[0].image }}" alt="Piano keyboard showing natural notes" class="keyboard-image">
+            </div>
         </div>
-    </div>
 
-    <div class="navigation-buttons mt-5 text-center">
-        <a href="{{ data.navigation.previous }}" class="btn btn-secondary me-2">{{ data.navigation.previous_text }}</a>
-        <a href="{{ data.navigation.next }}" class="btn btn-primary">{{ data.navigation.next_text }}</a>
+        <div class="navigation-section">
+            <a href="{{ data.navigation.previous }}" class="nav-btn btn-back">Back to Learn</a>
+            <a href="{{ data.navigation.next }}" class="nav-btn btn-next">Next: Treble Clef</a>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -3,29 +3,33 @@
 {% block title %}{{ data.title }} - Melody Muse{% endblock %}
 
 {% block content %}
-<div class="learn-content">
-    <h1 class="text-center mb-5">{{ data.title }}</h1>
-    
-    <div class="section-container">
-        <h2 class="mb-4">{{ data.subtitle }}</h2>
-        <div class="notes-grid">
-            <div class="row justify-content-center g-4">
-                {% for note in data.notes %}
-                <div class="col-md-3 col-sm-4 col-6">
-                    <a href="/learn/naturals/notes/{{ note|lower }}" class="text-decoration-none">
-                        <div class="note-item text-center">
-                            <h3 class="note-label">{{ note }}</h3>
-                        </div>
-                    </a>
+<div class="learn-page">
+    <div class="learn-container">
+        <h1 class="page-title">{{ data.title }}</h1>
+        
+        <div class="main-content-stacked">
+            <div class="info-section notes-section">
+                <h2 class="mb-4">{{ data.subtitle }}</h2>
+                <div class="note-buttons d-flex flex-column align-items-center my-4">
+                    <div class="note-buttons-row">
+                        <a href="/learn/naturals/notes/c" class="note-btn note-btn-wide nav-btn btn-next text-decoration-none">C</a>
+                        <a href="/learn/naturals/notes/d" class="note-btn note-btn-wide nav-btn btn-next text-decoration-none">D</a>
+                        <a href="/learn/naturals/notes/e" class="note-btn note-btn-wide nav-btn btn-next text-decoration-none">E</a>
+                        <a href="/learn/naturals/notes/f" class="note-btn note-btn-wide nav-btn btn-next text-decoration-none">F</a>
+                    </div>
+                    <div class="note-buttons-row">
+                        <a href="/learn/naturals/notes/g" class="note-btn note-btn-wide nav-btn btn-next text-decoration-none">G</a>
+                        <a href="/learn/naturals/notes/a" class="note-btn note-btn-wide nav-btn btn-next text-decoration-none">A</a>
+                        <a href="/learn/naturals/notes/b" class="note-btn note-btn-wide nav-btn btn-next text-decoration-none">B</a>
+                    </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
-    </div>
 
-    <div class="navigation-buttons mt-5 text-center">
-        <a href="{{ data.navigation.previous }}" class="btn btn-secondary me-2">{{ data.navigation.previous_text }}</a>
-        <a href="{{ data.navigation.next }}" class="btn btn-primary">{{ data.navigation.next_text }}</a>
+        <div class="navigation-section">
+            <a href="{{ data.navigation.previous }}" class="nav-btn btn-back">{{ data.navigation.previous_text }}</a>
+            <a href="{{ data.navigation.next }}" class="nav-btn btn-next">{{ data.navigation.next_text }}</a>
+        </div>
     </div>
 </div>
 {% endblock %}
