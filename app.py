@@ -210,28 +210,22 @@ def quiz_naturals_question(id):
 	global currentScore, maxScore
 
 	id = int(id)
+	print(id)
+
+
 
 	if id == 1: 
 		currentScore = 0
 		maxScore = 15
 
-	questionid = ""
-	# if id < 6: questionid += "t"
-	# elif id < 11: questionid += "b"
-	# else:
-	# 	clefs = ["b", "t"]
-	# 	random.Random(id).shuffle(clefs)
-	# 	questionid += clefs[0]
-	questionid += "t"
+	questionids = ["ta", "tb", "tc", "td", "te", "tf", "tg", "ba", "bb", "bc", "bd", "be", "bf", "bg"]
+	random.Random(0).shuffle(questionids)
 
 
+	questionid = questionids[id-1]
+	answer = questionid[1]
 
-	notes = ["a", "b", "c", "d", "e", "f", "g"]
-	random.Random(id).shuffle(notes)
-	questionid += notes[0]
-	answer = notes[0]
-
-	if id == 15: 
+	if id == 14: 
 		next_link = '/quiz/result'
 	else:
 		next_link = '/quiz/naturals/' + str(id+1)
