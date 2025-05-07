@@ -158,7 +158,7 @@ def quiz_results():
 	return render_template('naturals/quiz_results.html', data=data)
 
 @app.route('/quiz/naturals')
-def quiz_naturals():
+def quiz_easy():
 	record_action('page_visit', {'page': 'quiz'})
 	page_data = load_json_data('naturals', 'naturals_quiz')
 	return render_template('naturals/quiz_naturals.html', data=page_data)
