@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }} - Melody Muse{% endblock %}
+
+{% block content %}
+<div class="learn-page">
+    <div class="learn-container">
+        <h1 class="page-title">{{ data.title }}</h1>
+        <div class="main-content-stacked">
+            <div class="info-section">
+                <h2>{{ data.sections[0].title }}</h2>
+                <ul class="basic-info-list">
+                    {% for item in data.sections[0].content %}
+                    {% if item is string %}
+                    <li>{{ item }}</li>
+                    {% else %}
+                    <li class="with-sub-point">
+                        {{ item.text }}
+                        <ul>
+                            <li>{{ item.subpoint }}</li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="challenge-visual-section visual-section-small d-flex align-items-center justify-content-center">
+                <img src="{{ data.sections[0].image }}" alt="Piano keyboard showing natural notes" class="challenge-image keyboard-image">
+            </div>
+        </div>
+        <div class="navigation-section">
+            <a href="{{ data.navigation.previous }}" class="nav-btn btn-back">{{ data.navigation.previous_text }}</a>
+            <a href="{{ data.navigation.next }}" class="nav-btn btn-next">{{ data.navigation.next_text }}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#learnBtn').addClass('active');
+});
+</script>
+{% endblock %} 

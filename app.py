@@ -205,6 +205,50 @@ def quiz_challenge_results():
 	}
 	return render_template('challenge/quiz_results.html', data=data)
 
+
+@app.route('/quiz/easy')
+def quiz_easy():
+	record_action('page_visit', {'page': 'quiz'})
+	session['easy_score'] = 0
+	page_data = load_json_data('easy_quiz', 'easy_quiz')
+	print(page_data)
+	return render_template('easy_quiz/quiz_easy.html', data=page_data)
+
+@app.route('/quiz/easy/correct', methods=['POST'])
+def easy_add_correct():
+	session['easy_score'] = session.get('easy_score', 0) + 1
+	return jsonify(status='ok')
+
+@app.route('/quiz/easy/<int:id>')
+def quiz_easy_question(id):
+	record_action('page_visit', {'page': 'easy_quiz'})
+	questions = load_json_data('easy_quiz', 'easy_quiz_questions')
+	total = len(questions)
+	idx = id - 1
+
+	if idx < 0 or idx >= total:
+		return "Question not found", 404
+
+	question = questions[idx]
+	question['number'] = id
+	question['total'] = total
+	question['currentScore'] = session.get('challenge_score', 0)
+	question['maxScore'] = total
+	if id < total:
+		question['next_link'] = f'/quiz/easy/{id+1}'
+	else:
+		question['next_link'] = '/quiz/easy/results'
+
+	return render_template('easy_quiz/quiz_easy_question.html', question=question)
+
+@app.route('/quiz/easy/results')
+def quiz_easy_results():
+	data = {
+		"currentScore": session.get('easy_score', 0),
+		"maxScore": len(load_json_data('easy_quiz', 'easy_quiz_questions'))
+	}
+	return render_template('easy_quiz/quiz_results.html', data=data)
+
 @app.route('/quiz/naturals/<id>')
 def quiz_naturals_question(id):
 	global currentScore, maxScore

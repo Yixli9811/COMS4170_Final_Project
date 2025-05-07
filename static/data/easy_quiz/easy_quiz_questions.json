@@ -19,7 +19,7 @@
       "question": "Is this note A♭?",
       "image": "/static/images/Easy_Quiz/treble_aflat.png",
       "statement": "A♭",
-      "answer": "true",
+      "answer": true,
       "explanation": "The notes in the spaces of the treble clef can be remembered to spell: FACE! The little ♭ means flat!"
     },
     {
@@ -33,7 +33,7 @@
     {
       "type": "true_false",
       "question": "Is this note played on this key B#?",
-      "image": "/static/images/Easy_Quiz/keyboard_a#.png",
+      "image": "/static/images/Easy_Quiz/keyboard_asharp.png",
       "statement": "A#",
       "answer": false,
       "explanation": "Remember that sharps for a note is the black key on the top right of it!"
@@ -64,14 +64,14 @@
     {
         "type": "fill_in",
         "question": "What note is this?",
-        "image": "/static/images/Easy_Quiz/treble_e#.png",
+        "image": "/static/images/Easy_Quiz/treble_esharp.png",
         "answer": "E#",
         "explanation": "The notes on the ledger lines in treble cleff can be remembered as: Every Good Boy Does Fine, and the # is a sharp!"
     },
     {
       "type": "drag_and_drop",
       "question": "Drag the correct note name to the note on the staff.",
-      "image": "/static/images/Challenge_Quiz/bass_f.png",
+      "image": "/static/images/Easy_Quiz/bass_f.png",
       "options": ["D", "A", "F", "B"],
       "answer": "F",
       "explanation": "Remember our saying to count ledger lines: Good Boys Do Fine Always"
@@ -87,7 +87,7 @@
     {
       "type": "multiple_choice",
       "question": "What note is this?",
-      "image": "/static/images/Easy_Quiz/bass_c#.png",
+      "image": "/static/images/Easy_Quiz/bass_csharp.png",
       "options": ["D#", "E#", "A#", "F#"],
       "answer": "C#",
       "explanation": "A is the note lying between the bottom two ledger lines. We go up a whole step to get to C. With the #, it means that it is a sharp!"
