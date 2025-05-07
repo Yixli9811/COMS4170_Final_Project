@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Challenge Quiz Results - Melody Muse{% endblock %}
+
+{% block content %}
+<div class="learn-content">
+    <h1 class="text-center mb-5">Your Score: {{ data.currentScore }}/{{data.maxScore}}</h1>
+
+    <div class="content-section">
+        <h2>Great job completing the Easy Mode Quiz!</h2>
+        <div class="info-points">
+            <div class="info-item text-center">
+                {% if data.currentScore == data.maxScore %}
+                    Perfect score! You've mastered all the basics!
+                {% elif data.currentScore >= data.maxScore * 0.8 %}
+                    Excellent work! You have a strong understanding of the basics.
+                {% elif data.currentScore >= data.maxScore * 0.6 %}
+                    Good job! Keep practicing to improve your understanding of the basics.
+                {% else %}
+                    Keep practicing! Review the lessons and try again.
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation-buttons mt-5 text-center">
+        <a href="/learn" class="btn btn-secondary me-2">Review Learning</a>
+        <a href="/quiz" class="btn btn-primary">Back to Quizzes</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    $('#quizBtn').addClass('active');
+});
+</script>
+{% endblock %} 

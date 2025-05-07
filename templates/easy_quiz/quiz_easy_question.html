@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% block title %}{{ question.question }} - Melody Muse Easy{% endblock %}
+
+{% block content %}
+<div class="learn-page">
+    <div class="learn-container">
+        <h1 class="page-title">Easy Mode Quiz</h1>
+        <div class="main-content-stacked">
+
+            {# Visual Section - Also acts as Drop Zone for Drag & Drop #}
+            <div class="challenge-visual-section visual-section-small d-flex align-items-center justify-content-center" id="drop-zone">
+                {% if question.image %}
+                <img src="{{ question.image }}" alt="Quiz related image" class="challenge-image keyboard-image">
+                {% else %}
+                {# Optional: Placeholder if no image, or just leave empty #}
+                <div class="text-muted">(Drop Zone)</div>
+                {% endif %}
+            </div>
+
+            {# Information and Interaction Section #}
+            <div class="info-section">
+                <h2>Question {{ question.number }} of {{ question.total }}</h2>
+                <div class="info-points">
+                    {# Display the question text #}
+                    <div class="info-item">{{ question.question }}</div>
+                </div>
+                <div class="mt-3 mb-3">
+                    {# Display the current score #}
+                    <strong>Current Score: {{ question.currentScore }}/{{ question.maxScore }}</strong>
+                </div>
+
+                {# Area for Quiz Options - Content changes based on question type #}
+                <div id="quiz-options">
+                    {% if question.type == 'multiple_choice' %}
+                        {# Multiple Choice Options #}
+                        <form id="mc-form" onsubmit="return false;"> {# Prevent default form submission #}
+                            {% for opt in question.options %}
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="mc_option" id="opt{{ loop.index }}" value="{{ opt }}">
+                                    <label class="form-check-label" for="opt{{ loop.index }}">{{ opt }}</label>
+                                </div>
+                            {% endfor %}
+                            <button type="button" class="btn btn-primary mt-2" id="submit-mc">Submit</button>
+                        </form>
+
+                    {% elif question.type == 'true_false' %}
+                        {# True/False Buttons #}
+                        <div class="d-flex gap-3 mt-3">
+                            <button type="button" class="btn btn-primary" id="true-btn">True</button>
+                            <button type="button" class="btn btn-primary" id="false-btn">False</button>
+                        </div>
+
+                    {% elif question.type == 'drag_and_drop' %}
+                        {# Drag and Drop Options #}
+                         <p class="mt-3">Drag the correct answer to the image area above.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-3" id="drag-options">
+                            {% for opt in question.options %}
+                                <div class="btn btn-secondary draggable-option" data-value="{{ opt }}">{{ opt }}</div>
+                            {% endfor %}
+                        </div>
+                         {# No submit button needed for drag and drop #}
+                    
+                    {% elif question.type == 'fill_in' %}
+                        {# Type in the answer #}
+                        <div class = "text-center" id ="s1"> 
+                            Type the correct note (A-G): 
+                            <input type="text" id="answer"> 
+                        </div>
+                        <button type="button" class="btn btn-primary mt-2" id="submit-fill-in">Submit</button>
+                    {% else %}
+                         {# Fallback if question type is unknown #}
+                         <p class="text-danger">Error: Unknown question type '{{ question.type }}'.</p>
+                    {% endif %}
+                </div>
+
+                {# Feedback Area - Shown after answering #}
+                <div id="feedback" class="mt-4" style="display:none;">
+                    <div id="feedback-message" class="fw-bold"></div> {# Make feedback message bold #}
+                    <div class="mt-2">
+                        <strong>Explanation:</strong>
+                        <span id="explanation-text">{{ question.explanation }}</span> {# Placeholder, JS will update #}
+                    </div>
+                    <div class="mt-3">
+                         {# Link to the next question #}
+                        <a href="{{ question.next_link }}" class="btn btn-success">Next Question</a> {# Changed to btn-success for progression #}
+                    </div>
+                </div>
+            </div> {# End info-section #}
+
+        </div> {# End main-content-stacked #}
+    </div> {# End learn-container #}
+</div> {# End learn-page #}
+{% endblock %}
+
+{% block scripts %}
+{# Ensure jQuery Core is loaded before this block, likely in base.html #}
+{# Include jQuery UI for Drag and Drop functionality #}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+{# Custom JavaScript for Quiz Logic #}
+<script>
+$(document).ready(function() {
+    let correctAnswer, explanation, questionType;
+
+    try {
+        correctAnswer = {{ question.answer|tojson|safe }};
+        explanation = {{ question.explanation|tojson|safe }};
+        questionType = {{ question.type|tojson|safe }};
+
+        if (explanation === undefined || explanation === null) {
+           throw new Error("Explanation data is missing or null.");
+        }
+        if (correctAnswer === undefined || correctAnswer === null) {
+           throw new Error("Correct answer data is missing or null.");
+        }
+        if (!questionType) {
+           throw new Error("Question type data is missing or invalid.");
+        }
+
+    } catch (e) {
+        console.error("Error initializing question data from template:", e);
+         $('#quiz-options').hide(); 
+         $('#feedback-message').text('Error loading question data. Please contact support or refresh.');
+         $('#explanation-text').text('');
+         $('#feedback').show().find('a').hide(); 
+        return;
+    }
+
+
+    // Function to POST to server when answer is correct
+    function incrementChallengeScore(callback) {
+        $.post('/quiz/challenge/correct', {}, function(response) {
+            console.log("Score update successful.");
+            if (callback) callback();
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("Failed to update score:", textStatus, errorThrown);
+            if (callback) callback();
+        });
+    }
+
+     function showFeedback(isCorrect, messageOverride = null) {
+         $('#quiz-options').hide(); // Hide the question options/buttons
+         let feedbackMsg = '';
+         let explanationText = explanation; // Use the initialized explanation
+
+         if (isCorrect) {
+             feedbackMsg = messageOverride || 'Correct! 🎉'; 
+             // Call score update ONLY if correct
+             incrementChallengeScore(function() {
+                 // This runs after the POST request completes (or fails, based on current logic)
+                 $('#feedback-message').removeClass('text-danger').addClass('text-success').text(feedbackMsg);
+                 $('#explanation-text').text(explanationText);
+                 $('#feedback').slideDown();
+             });
+         } else {
+            feedbackMsg = messageOverride || 'Incorrect.';
+            let displayAnswer = correctAnswer; // Default display
+
+            if (questionType === 'true_false' && typeof correctAnswer === 'boolean') {
+                displayAnswer = correctAnswer ? 'True' : 'False';
+            }
+            if (!messageOverride) {
+                 feedbackMsg += ' The correct answer is: ' + displayAnswer;
+            }
+
+             $('#feedback-message').removeClass('text-success').addClass('text-danger').text(feedbackMsg);
+             $('#explanation-text').text(explanationText);
+             $('#feedback').slideDown(); // Animate feedback appearance
+         }
+    }
+
+    // --- Event Handlers ---
+
+    // Multiple Choice Submission
+    $('#submit-mc').on('click', function() {
+        const selected = $('input[name="mc_option"]:checked').val();
+        if (selected === undefined) {
+            alert("Please select an option before submitting.");
+            return; 
+        }
+        showFeedback(selected === correctAnswer);
+    });
+
+    //Fill in the Blank Submit Button Click
+    $('#submit-fill-in').on('click', function() {
+        const userInput = $('#answer').val().trim().toUpperCase(); // Normalize input     // Normalize correct answer
+        showFeedback(userInput === correctAnswer);
+    });
+
+    // True/False Button Clicks
+    $('#true-btn, #false-btn').on('click', function() {
+        const userAns = $(this).attr('id') === 'true-btn'; // Get user's boolean answer
+
+        if (typeof correctAnswer !== 'boolean') {
+            console.error("Type mismatch: Correct answer for True/False is not a boolean:", correctAnswer);
+            showFeedback(false, "Error: Internal configuration issue."); // Show generic error
+            return;
+        }
+        showFeedback(userAns === correctAnswer);
+    });
+
+    // --- Drag and Drop Setup (Only if question type is correct) ---
+    if (questionType === 'drag_and_drop') {
+        $('.draggable-option').draggable({
+            revert: 'invalid',
+            helper: 'clone',
+            cursor: 'move'
+        });
+
+        // Make the visual section a droppable target
+        $('#drop-zone').droppable({
+            accept: '.draggable-option', // Only accept elements with this class
+            drop: function(event, ui) {
+                const droppedValue = $(ui.draggable).data('value');
+                showFeedback(String(droppedValue) === String(correctAnswer));
+
+                // Visual feedback on drop zone
+                $(this).addClass('ui-state-highlight');
+                setTimeout(() => { $(this).removeClass('ui-state-highlight'); }, 500);
+            },
+            over: function(event, ui) {
+                $(this).addClass('drop-zone-hover');
+            },
+            out: function(event, ui) {
+                $(this).removeClass('drop-zone-hover');
+            }
+        });
+
+         const style = document.createElement('style');
+         style.innerHTML = `
+            .drop-zone-hover { border: 2px dashed #0d6efd !important; background-color: #e7f1ff; }
+            .ui-state-highlight { border: 1px solid #fad42e !important; background: #fbec88 !important; color: #363636; }
+         `;
+         document.head.appendChild(style);
+    }
+
+});
+</script>
+{% endblock %}
