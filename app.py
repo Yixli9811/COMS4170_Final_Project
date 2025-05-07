@@ -232,7 +232,7 @@ def quiz_easy_question(id):
 	question = questions[idx]
 	question['number'] = id
 	question['total'] = total
-	question['currentScore'] = session.get('challenge_score', 0)
+	question['currentScore'] = session.get('easy_score', 0)
 	question['maxScore'] = total
 	if id < total:
 		question['next_link'] = f'/quiz/easy/{id+1}'
