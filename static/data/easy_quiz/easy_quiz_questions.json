@@ -91,7 +91,7 @@
       "type": "multiple_choice",
       "question": "What note is this?",
       "image": "/static/images/Easy_Quiz/bass_csharp.png",
-      "options": ["D#", "E#", "A#", "F#"],
+      "options": ["D#", "E#", "C#", "F#"],
       "answer": "C#",
       "explanation": "A is the note lying between the bottom two ledger lines. We go up a whole step to get to C. With the #, it means that it is a sharp!"
     }

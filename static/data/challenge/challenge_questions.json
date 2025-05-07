@@ -20,7 +20,7 @@
     "question": "Drag the correct note name to the note on the staff.",
     "image": "/static/images/Challenge_Quiz/treble_second_above.png",
     "options": ["D", "E", "C", "G"],
-    "answer": "G",
+    "answer": "D",
     "explanation": "G is the note lying above the top ledger line. Counting up, we get: G -> B -> D"
   },
   {
@@ -33,11 +33,11 @@
   },
   {
     "type": "true_false",
-    "question": "Is the note on the staff a G?",
+    "question": "Is the note on the staff a E?",
     "image": "/static/images/Challenge_Quiz/high-treble-G.png",
-    "statement": "G",
+    "statement": "E",
     "answer": true,
-    "explanation": "The fourth ledger line above the treble staff is G. Count up each line and space above the staff."
+    "explanation": "The third ledger line above the treble staff is E. Count up each line and space above the staff."
   },
   {
     "type": "true_false",
@@ -73,7 +73,7 @@
   },
   {
     "type": "multiple_choice",
-    "question": "What note is on the fourth ledger line below the bass clef staff?",
+    "question": "What note is on the second ledger line above the bass clef staff?",
     "image": "/static/images/Challenge_Quiz/high-bass-E.webp",
     "options": ["G", "E", "D", "F"],
     "answer": "E",
