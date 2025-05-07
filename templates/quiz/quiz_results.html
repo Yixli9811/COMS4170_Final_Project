@@ -7,7 +7,7 @@
     <h1 class="text-center mb-5">Your Score: {{ data.currentScore }}/{{data.maxScore}}</h1>
 
     <div class="content-section">
-        <h2>Great job completing the Challenge Mode Quiz!</h2>
+        <h2>Great job completing the {{data.name}} Quiz!</h2>
         <div class="info-points">
             <div class="info-item text-center">
                 {% if data.currentScore == data.maxScore %}

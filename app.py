@@ -166,13 +166,13 @@ def quiz_naturals():
 @app.route('/quiz/challenge')
 def quiz_challenge():
 	record_action('page_visit', {'page': 'quiz'})
-	session['challenge_score'] = 0
+	session['score'] = 0
 	page_data = load_json_data('challenge', 'challenge_quiz')
 	return render_template('challenge/quiz_challenge.html', data=page_data)
 
 @app.route('/quiz/challenge/correct', methods=['POST'])
 def challenge_add_correct():
-	session['challenge_score'] = session.get('challenge_score', 0) + 1
+	session['score'] = session.get('score', 0) + 1
 	return jsonify(status='ok')
 
 @app.route('/quiz/challenge/<int:id>')
@@ -185,64 +185,64 @@ def quiz_challenge_question(id):
 	if idx < 0 or idx >= total:
 		return "Question not found", 404
 
+	if idx == 0:
+		session['score'] = 0
+
 	question = questions[idx]
 	question['number'] = id
 	question['total'] = total
-	question['currentScore'] = session.get('challenge_score', 0)
+	question['currentScore'] = session.get('score', 0)
 	question['maxScore'] = total
 	if id < total:
 		question['next_link'] = f'/quiz/challenge/{id+1}'
 	else:
 		question['next_link'] = '/quiz/challenge/results'
 
-	return render_template('challenge/quiz_challenge_question.html', question=question)
+	return render_template('quiz/quiz_question.html', question=question)
 
 @app.route('/quiz/challenge/results')
 def quiz_challenge_results():
 	data = {
-		"currentScore": session.get('challenge_score', 0),
-		"maxScore": len(load_json_data('challenge', 'challenge_questions'))
+		"currentScore": session.get('score', 0),
+		"maxScore": len(load_json_data('challenge', 'challenge_questions')),
+		"name": "Challenge Mode"
 	}
-	return render_template('challenge/quiz_results.html', data=data)
+	return render_template('quiz/quiz_results.html', data=data)
 
-@app.route('/quiz/naturals/<id>')
+@app.route('/quiz/naturals/<int:id>')
 def quiz_naturals_question(id):
-	global currentScore, maxScore
+	record_action('page_visit', {'page': 'easy_quiz'})
+	questions = load_json_data('naturals', 'questions')
+	total = len(questions)
+	idx = id - 1
 
-	id = int(id)
-	print(id)
-
-
-
-	if id == 1: 
-		currentScore = 0
-		maxScore = 15
-
-	questionids = ["ta", "tb", "tc", "td", "te", "tf", "tg", "ba", "bb", "bc", "bd", "be", "bf", "bg"]
-	random.Random(0).shuffle(questionids)
+	if idx < 0 or idx >= total:
+		return "Question not found", 404
 
 
-	questionid = questionids[id-1]
-	answer = questionid[1]
+	if idx == 0:
+		session['score'] = 0
 
-	if id == 14: 
-		next_link = '/quiz/result'
+	question = questions[idx]
+	question['number'] = id
+	question['total'] = total
+	question['currentScore'] = session.get('score', 0)
+	question['maxScore'] = total
+	if id < total:
+		question['next_link'] = f'/quiz/naturals/{id+1}'
 	else:
-		next_link = '/quiz/naturals/' + str(id+1)
+		question['next_link'] = '/quiz/naturals/results'
 
-	question = {
-		'id' : questionid,
-		'number': id,
-		'image': f'/static/images/Naturals_Quiz/{questionid}.png',
-		'currentScore' : currentScore,
-		'maxScore': maxScore,
-		'answer': answer,
-		'next_link': next_link
+	return render_template('quiz/quiz_question.html', question=question)
+
+@app.route('/quiz/naturals/results')
+def quiz_naturals_results():
+	data = {
+		"currentScore": session.get('score', 0),
+		"maxScore": len(load_json_data('naturals', 'questions')),
+		"name": "Note Mode"
 	}
-
-	record_action('page_visit', {'page': 'quiz'})
-	page_data = load_json_data('naturals', 'naturals')
-	return render_template('naturals/quiz_naturals_question.html', data=page_data, question = question)
+	return render_template('quiz/quiz_results.html', data=data)
 
 @app.route('/quiz/correct', methods=['POST'])
 def addCorrect():

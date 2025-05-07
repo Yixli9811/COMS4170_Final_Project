@@ -1,8 +1,9 @@
 [
     {
-      "type": "fill_in",
+      "type": "multiple_choice",
       "question": "What note is this?",
       "image": "/static/images/Easy_Quiz/bass_b.png",
+      "options": ["B", "E", "G", "A"],
       "answer": "B",
       "explanation": "A is the note lying on the top ledger line. Going up half a step, we get B."
     },
@@ -19,7 +20,7 @@
       "question": "Is this note A♭?",
       "image": "/static/images/Easy_Quiz/treble_aflat.png",
       "statement": "A♭",
-      "answer": "true",
+      "answer": true,
       "explanation": "The notes in the spaces of the treble clef can be remembered to spell: FACE! The little ♭ means flat!"
     },
     {
@@ -39,10 +40,11 @@
       "explanation": "Remember that sharps for a note is the black key on the top right of it!"
     },
     {
-        "type": "fill_in",
+        "type": "multiple_choice",
         "question": "What note is played on this key?",
         "image": "/static/images/Easy_Quiz/keyboard_c.png",
         "answer": "C",
+        "options": ["B", "G", "C", "A"],
         "explanation": "Remember that C is the first note on the simplified keyboard -> it begins the cluster that only has 2 flats"
     },
     {
@@ -62,10 +64,11 @@
       "explanation": "The first note between the bottom two ledger lines is A. Counting up a full whole step or 2 half steps we get to C."
     },
     {
-        "type": "fill_in",
+        "type": "multiple_choice",
         "question": "What note is this?",
         "image": "/static/images/Easy_Quiz/treble_e#.png",
         "answer": "E#",
+        "options": ["D♭", "C♭", "E#", "A#"],
         "explanation": "The notes on the ledger lines in treble cleff can be remembered as: Every Good Boy Does Fine, and the # is a sharp!"
     },
     {
