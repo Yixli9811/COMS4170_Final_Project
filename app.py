@@ -227,6 +227,7 @@ def quiz_naturals_question(id):
 	question['number'] = id
 	question['total'] = total
 	question['currentScore'] = session.get('score', 0)
+
 	question['maxScore'] = total
 	if id < total:
 		question['next_link'] = f'/quiz/naturals/{id+1}'
