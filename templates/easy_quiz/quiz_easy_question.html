@@ -130,8 +130,8 @@ $(document).ready(function() {
 
 
     // Function to POST to server when answer is correct
-    function incrementChallengeScore(callback) {
-        $.post('/quiz/challenge/correct', {}, function(response) {
+    function incrementEasyScore(callback) {
+        $.post('/quiz/easy/correct', {}, function(response) {
             console.log("Score update successful.");
             if (callback) callback();
         }).fail(function(jqXHR, textStatus, errorThrown) {
@@ -148,7 +148,7 @@ $(document).ready(function() {
          if (isCorrect) {
              feedbackMsg = messageOverride || 'Correct! 🎉'; 
              // Call score update ONLY if correct
-             incrementChallengeScore(function() {
+             incrementEasyScore(function() {
                  // This runs after the POST request completes (or fails, based on current logic)
                  $('#feedback-message').removeClass('text-danger').addClass('text-success').text(feedbackMsg);
                  $('#explanation-text').text(explanationText);
