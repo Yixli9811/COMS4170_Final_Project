@@ -21,10 +21,10 @@ def record_action(action_type, details):
 def load_json_data(folder, filename):
 	try:
 		if not folder:
-			with open(f'static/data/{filename}.json', 'r') as f:
+			with open(f'static/data/{filename}.json', 'r', encoding='utf-8') as f:
 				return json.load(f)
 		else:
-			with open(f'static/data/{folder}/{filename}.json', 'r') as f:
+			with open(f'static/data/{folder}/{filename}.json', 'r', encoding='utf-8') as f:
 				return json.load(f)
 	except FileNotFoundError:
 		return {}
