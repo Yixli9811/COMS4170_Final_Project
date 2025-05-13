@@ -1,0 +1,8 @@
+### Melody Muse
+
+How to run the code:
+```
+export FLASK_APP=app.py
+export FLASK_DEBUG=1
+flask run
+```
