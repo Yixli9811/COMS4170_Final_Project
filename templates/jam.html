@@ -14,11 +14,12 @@
       z-index: 3;
     }
 
-    #keyboard .white-key:hover,
-    #keyboard .black-key:hover {
-      box-shadow: 0 0 10px 3px rgba(255, 237, 134, 0.8);
-      z-index: 2;
-    }
+  #keyboard .white-key:hover,
+  #keyboard .black-key:hover,
+  .key-press {
+    box-shadow: 0 0 10px 3px rgba(255, 237, 134, 0.8);
+    z-index: 2 !important;
+  }
 </style>
 <div class="container jam-container mt-5">
   <h1 class="text-center mb-4">Jam Space</h1>
@@ -86,16 +87,23 @@
       });
     }
 
-    function playNote(note) {
-      if (!note) return;
-      new Audio(`/static/audios/jam/${note}.mp3`).play();
-      fetch('/jam/play', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({note})
-      });
-    }
+  function playNote(note) {
+    if (!note) return;
 
+    new Audio(`/static/audios/jam/${note}.mp3`).play();
+    fetch('/jam/play', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({note})
+    });
+
+    // Add highlight matching the hover effect
+    const keyEl = kb.querySelector(`[data-note="${note}"]`);
+    if (keyEl) {
+      keyEl.classList.add('key-press');
+      setTimeout(() => keyEl.classList.remove('key-press'), 200);
+    }
+  }
     kb.addEventListener('click', e => {
       const note = e.target.dataset.note;
       playNote(note);
