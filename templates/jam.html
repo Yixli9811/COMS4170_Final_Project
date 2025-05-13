@@ -9,7 +9,11 @@
   <div class="text-center mb-5">
     <p class="lead">Welcome to your virtual piano playground!</p>
     <p class="mb-4">Click any key on the piano keyboard below to hear its sound. This interactive space lets you explore different notes and create your own melodies.</p>
-    <p class="text-muted">The keyboard spans three octaves, from C3 to B5, featuring both white (natural) and black (sharp/flat) keys.</p>
+    <p class="text-muted">The keyboard spans three octaves, from C3 to B5, featuring both white (natural) and black (sharp/flat) keys. There are keybinds that allow you to play from C3 - G4 using the following mapping.</p>
+    <p class = "text-muted"> C3 = a, Db3 = w, D3 = s, Eb3 = e, E3 = d, F3 = f, Gb3 = t, G3 = g, Ab3 = y, H3 = h, Bb3 = u, B3 = j, C4 = k, Db4 = o, D4 = l, Eb4 = p, E4 = ;, F4 ', Gb4 = ], G4 = \</p>
+    <p class = "text-muted"> Think of it as if the keyboard is a simplified keyboard where C is leftmost note and each key to the right corresponds to the next key on the piano. The flats and sharps are in the row above it.</p>
+    
+    <p class="text-muted"></p>
   </div>
 
   <div id="keyboard-wrapper" class="d-flex justify-content-center">
@@ -30,6 +34,15 @@
     const kb = document.getElementById('keyboard');
     const whiteW = 60, blackW = 40;
     let whiteCount = 0;
+
+    const keyMap = {
+      // Lower row
+      'a': 'C3', 'w': 'Db3', 's': 'D3', 'e': 'Eb3', 'd': 'E3',
+      'f': 'F3', 't': 'Gb3', 'g': 'G3', 'y': 'Ab3', 'h': 'A3', 'u': 'Bb3', 'j': 'B3',
+      'k': 'C4', 'o': 'Db4', 'l': 'D4', 'p': 'Eb4', ';': 'E4',
+      // Upper row (optional, adds next octave)
+      "'": 'F4', ']': 'Gb4', '\\': 'G4'
+    };
 
     for (let o = startOctave; o < startOctave + octaves; o++) {
       whiteKeys.forEach((w,i) => {
@@ -56,8 +69,7 @@
       });
     }
 
-    kb.addEventListener('click', e => {
-      const note = e.target.dataset.note;
+    function playNote(note) {
       if (!note) return;
       new Audio(`/static/audios/jam/${note}.mp3`).play();
       fetch('/jam/play', {
@@ -65,6 +77,16 @@
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({note})
       });
+    }
+
+    kb.addEventListener('click', e => {
+      const note = e.target.dataset.note;
+      playNote(note);
+    });
+
+    document.addEventListener('keydown', e => {
+      const note = keyMap[e.key.toLowerCase()];
+      playNote(note);
     });
   </script>
 {% endblock %}

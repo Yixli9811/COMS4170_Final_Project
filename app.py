@@ -249,45 +249,6 @@ def quiz_easy_results():
 	}
 	return render_template('easy_quiz/quiz_results.html', data=data)
 
-@app.route('/quiz/naturals/<id>')
-def quiz_naturals_question(id):
-	global currentScore, maxScore
-
-	id = int(id)
-	print(id)
-
-
-
-	if id == 1: 
-		currentScore = 0
-		maxScore = 15
-
-	questionids = ["ta", "tb", "tc", "td", "te", "tf", "tg", "ba", "bb", "bc", "bd", "be", "bf", "bg"]
-	random.Random(0).shuffle(questionids)
-
-
-	questionid = questionids[id-1]
-	answer = questionid[1]
-
-	if id == 14: 
-		next_link = '/quiz/result'
-	else:
-		next_link = '/quiz/naturals/' + str(id+1)
-
-	question = {
-		'id' : questionid,
-		'number': id,
-		'image': f'/static/images/Naturals_Quiz/{questionid}.png',
-		'currentScore' : currentScore,
-		'maxScore': maxScore,
-		'answer': answer,
-		'next_link': next_link
-	}
-
-	record_action('page_visit', {'page': 'quiz'})
-	page_data = load_json_data('naturals', 'naturals')
-	return render_template('naturals/quiz_naturals_question.html', data=page_data, question = question)
-
 @app.route('/quiz/correct', methods=['POST'])
 def addCorrect():
 	global currentScore
